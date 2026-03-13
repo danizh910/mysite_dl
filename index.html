@@ -510,6 +510,33 @@
 
     .project-card:hover .project-link::after { transform: translateX(4px); }
 
+    .sidequest-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 30px;
+    }
+
+    .sidequest-sub {
+      color: var(--muted);
+      font-size: 0.76rem;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .sidequest-list {
+      columns: 2;
+      column-gap: 26px;
+      padding-left: 18px;
+    }
+
+    .sidequest-list li {
+      break-inside: avoid;
+      margin-bottom: 12px;
+      color: var(--text);
+      font-size: 0.75rem;
+      line-height: 1.7;
+    }
+
     .stack-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -644,6 +671,7 @@
       section { padding: 58px 20px; }
       .about-grid { grid-template-columns: 1fr; gap: 34px; }
       .contact-box { padding: 38px 20px; }
+      .sidequest-list { columns: 1; }
       footer { padding: 24px 20px; }
     }
 
@@ -666,6 +694,7 @@
       <li><a href="#about" data-i18n="nav_about">Über mich</a></li>
       <li><a href="#services" data-i18n="nav_services">Leistungen</a></li>
       <li><a href="#projects" data-i18n="nav_projects">Projekte</a></li>
+      <li><a href="#sidequests" data-i18n="nav_sidequests">Sidequests</a></li>
       <li><a href="#stack" data-i18n="nav_stack">Stack</a></li>
       <li><a href="#contact" data-i18n="nav_contact">Kontakt</a></li>
     </ul>
@@ -852,6 +881,40 @@
     </div>
   </section>
 
+  <section id="sidequests">
+    <div class="section-header reveal">
+      <span class="section-num">05</span>
+      <h2 class="section-title" data-i18n="sidequests_title">Solo Sidequests</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="sidequest-box reveal">
+      <p class="sidequest-sub" data-i18n="sidequests_sub">Kuratiert aus deinen Screenshots, bereinigt um doppelte und zu ähnliche Aufgaben.</p>
+      <ol class="sidequest-list">
+        <li data-i18n="sq1">Schreibe ein ehrliches Gespräch mit dir selbst auf: Was vermeidest du gerade wirklich?</li>
+        <li data-i18n="sq2">Räume deinen gesamten Space so auf, als würdest du neu starten.</li>
+        <li data-i18n="sq3">Probiere alleine ein neues Café aus und beobachte bewusst deine Umgebung.</li>
+        <li data-i18n="sq4">Nimm dir eine Entscheidung vor, die du lange aufgeschoben hast, und triff sie heute.</li>
+        <li data-i18n="sq5">Bete, meditiere oder reflektiere 20 Minuten ohne sofort eine Antwort zu erzwingen.</li>
+        <li data-i18n="sq6">Plane ein Solo-Date mit klarer Absicht (Ort, Zeit, Budget, Fokus).</li>
+        <li data-i18n="sq7">Höre Musik, die zu deiner aktuellen Stimmung passt, statt sie zu überdecken.</li>
+        <li data-i18n="sq8">Schreibe einen Brief an dein jüngeres Ich.</li>
+        <li data-i18n="sq9">Sage heute bewusst Nein zu einer Sache, zu der du sonst automatisch Ja sagen würdest.</li>
+        <li data-i18n="sq10">Verbringe eine Stunde ohne Handy und ohne Ablenkung — einfach nur mit dir.</li>
+        <li data-i18n="sq11">Beantworte schriftlich: Wer bist du, wenn niemand zuschaut?</li>
+        <li data-i18n="sq12">Frage 5–10 Menschen nach der besten Entscheidung ihres Lebens und notiere Muster.</li>
+        <li data-i18n="sq13">Frage 5–10 Menschen nach ihrer schlechtesten Entscheidung und lerne aus den Antworten.</li>
+        <li data-i18n="sq14">Zieh dich für einen Tag bewusst elegant an und bewege dich mit dieser Energie durch den Tag.</li>
+        <li data-i18n="sq15">Geh allein ins Kino und beobachte, wie sich dein Erleben ohne Begleitung verändert.</li>
+        <li data-i18n="sq16">Starte ein spontanes Gespräch an einem öffentlichen Ort mit echtem Interesse.</li>
+        <li data-i18n="sq17">Gehe in eine Arcade und bleibe, bis du mindestens ein Spiel meisterst.</li>
+        <li data-i18n="sq18">Mach eine Sunrise-Mission: früh aufstehen, laufen, Aussichtspunkt, Sonnenaufgang.</li>
+        <li data-i18n="sq19">Besuche ein Open Mic/Event, bleib bis zum Ende und gib einer Person ehrliches Feedback.</li>
+        <li data-i18n="sq20">Steh 3 Minuten vor dem Spiegel, halte Blickkontakt mit dir selbst und beobachte deine Gedanken.</li>
+      </ol>
+    </div>
+  </section>
+
   <section id="contact">
     <div class="contact-box reveal">
       <h2 class="contact-title" data-i18n="contact_title">Lass uns etwas Starkes bauen.</h2>
@@ -937,6 +1000,7 @@
         nav_about: 'Über mich',
         nav_services: 'Leistungen',
         nav_projects: 'Projekte',
+        nav_sidequests: 'Sidequests',
         nav_stack: 'Stack',
         nav_contact: 'Kontakt',
         hero_tag: 'Verfügbar für Projekte · Zürich, CH',
@@ -969,6 +1033,28 @@
         project_link: 'Repository ansehen',
         projects_all: 'Alle Projekte auf GitHub →',
         stack_title: 'Tech Stack',
+        sidequests_title: 'Solo Sidequests',
+        sidequests_sub: 'Kuratiert aus deinen Screenshots, bereinigt um doppelte und zu ähnliche Aufgaben.',
+        sq1: 'Schreibe ein ehrliches Gespräch mit dir selbst auf: Was vermeidest du gerade wirklich?',
+        sq2: 'Räume deinen gesamten Space so auf, als würdest du neu starten.',
+        sq3: 'Probiere alleine ein neues Café aus und beobachte bewusst deine Umgebung.',
+        sq4: 'Nimm dir eine Entscheidung vor, die du lange aufgeschoben hast, und triff sie heute.',
+        sq5: 'Bete, meditiere oder reflektiere 20 Minuten ohne sofort eine Antwort zu erzwingen.',
+        sq6: 'Plane ein Solo-Date mit klarer Absicht (Ort, Zeit, Budget, Fokus).',
+        sq7: 'Höre Musik, die zu deiner aktuellen Stimmung passt, statt sie zu überdecken.',
+        sq8: 'Schreibe einen Brief an dein jüngeres Ich.',
+        sq9: 'Sage heute bewusst Nein zu einer Sache, zu der du sonst automatisch Ja sagen würdest.',
+        sq10: 'Verbringe eine Stunde ohne Handy und ohne Ablenkung — einfach nur mit dir.',
+        sq11: 'Beantworte schriftlich: Wer bist du, wenn niemand zuschaut?',
+        sq12: 'Frage 5–10 Menschen nach der besten Entscheidung ihres Lebens und notiere Muster.',
+        sq13: 'Frage 5–10 Menschen nach ihrer schlechtesten Entscheidung und lerne aus den Antworten.',
+        sq14: 'Zieh dich für einen Tag bewusst elegant an und bewege dich mit dieser Energie durch den Tag.',
+        sq15: 'Geh allein ins Kino und beobachte, wie sich dein Erleben ohne Begleitung verändert.',
+        sq16: 'Starte ein spontanes Gespräch an einem öffentlichen Ort mit echtem Interesse.',
+        sq17: 'Gehe in eine Arcade und bleibe, bis du mindestens ein Spiel meisterst.',
+        sq18: 'Mach eine Sunrise-Mission: früh aufstehen, laufen, Aussichtspunkt, Sonnenaufgang.',
+        sq19: 'Besuche ein Open Mic/Event, bleib bis zum Ende und gib einer Person ehrliches Feedback.',
+        sq20: 'Steh 3 Minuten vor dem Spiegel, halte Blickkontakt mit dir selbst und beobachte deine Gedanken.',
         contact_title: 'Lass uns etwas Starkes bauen.',
         contact_sub: 'Wenn du einen motivierten Junior mit starkem Delivery-Mindset suchst, lass uns vernetzen.',
         contact_github: 'GitHub ansehen ↗',
@@ -980,6 +1066,7 @@
         nav_about: 'About',
         nav_services: 'Services',
         nav_projects: 'Projects',
+        nav_sidequests: 'Sidequests',
         nav_stack: 'Stack',
         nav_contact: 'Contact',
         hero_tag: 'Available for Projects · Zurich, CH',
@@ -1012,6 +1099,28 @@
         project_link: 'View repository',
         projects_all: 'All projects on GitHub →',
         stack_title: 'Tech Stack',
+        sidequests_title: 'Solo Side Quests',
+        sidequests_sub: 'Curated from your screenshots and cleaned up to avoid duplicates and near-identical tasks.',
+        sq1: 'Write out an honest conversation with yourself: what are you truly avoiding right now?',
+        sq2: 'Reset your space as if you were starting a completely new chapter.',
+        sq3: 'Try a new café alone and mindfully observe the people and atmosphere around you.',
+        sq4: 'Face one decision you have delayed for too long and finalize it today.',
+        sq5: 'Pray, meditate, or reflect for 20 minutes without forcing an answer.',
+        sq6: 'Plan a solo date intentionally (place, time, budget, and purpose).',
+        sq7: 'Listen to music that matches your current mood instead of trying to fix it.',
+        sq8: 'Write a letter to your younger self.',
+        sq9: 'Say no to one thing today that you would usually say yes to automatically.',
+        sq10: 'Spend one full hour without your phone or any distraction.',
+        sq11: 'Journal on this question: who are you when nobody is watching?',
+        sq12: 'Ask 5–10 people about the best decision of their life and note recurring patterns.',
+        sq13: 'Ask 5–10 people about their worst decision and learn from what they share.',
+        sq14: 'Dress sharply for one day and move through your day with that energy.',
+        sq15: 'Go to the cinema alone and observe how the experience feels different.',
+        sq16: 'Start a spontaneous conversation in public with genuine curiosity.',
+        sq17: 'Go to an arcade and stay until you beat at least one game.',
+        sq18: 'Do a sunrise mission: wake early, run/walk to a viewpoint, watch the city wake up.',
+        sq19: 'Attend an open mic/event, stay until the end, and give someone sincere appreciation.',
+        sq20: 'Stand in front of a mirror for 3 minutes, hold eye contact, and observe your thoughts.',
         contact_title: "Let’s build something impactful.",
         contact_sub: 'If you are looking for a motivated junior with a strong delivery mindset, let’s connect.',
         contact_github: 'View GitHub ↗',
