@@ -493,6 +493,17 @@
       margin-bottom: 22px;
     }
 
+    .project-list {
+      list-style: none;
+      display: grid;
+      gap: 6px;
+    }
+
+    .project-list li::before {
+      content: '• ';
+      color: var(--accent);
+    }
+
     .project-link {
       font-size: 0.64rem;
       letter-spacing: 0.15em;
@@ -664,9 +675,9 @@
 
     <ul class="nav-links">
       <li><a href="#about" data-i18n="nav_about">Über mich</a></li>
-      <li><a href="#services" data-i18n="nav_services">Leistungen</a></li>
+      <li><a href="#about" data-i18n="nav_services">Skills</a></li>
       <li><a href="#projects" data-i18n="nav_projects">Projekte</a></li>
-      <li><a href="#stack" data-i18n="nav_stack">Stack</a></li>
+      <li><a href="#how" data-i18n="nav_stack">How I Work</a></li>
       <li><a href="#contact" data-i18n="nav_contact">Kontakt</a></li>
     </ul>
 
@@ -681,14 +692,16 @@
     <div class="hero-glow2"></div>
 
     <div class="hero-content">
-      <div class="hero-tag" data-i18n="hero_tag">Verfügbar für Projekte · Zürich, CH</div>
-      <h1 class="hero-name">
-        <span class="line">Daniel</span>
-        <span class="line accent">Luterbach</span>
+      <div class="hero-tag" data-i18n="hero_tag">Open to opportunities · Zurich, CH</div>
+      <h1 class="hero-name" data-i18n="hero_headline">
+        <span class="line">Business & Tech Engineer building data-driven systems</span>
+        <span class="line accent">in AI, finance and crypto.</span>
       </h1>
+      <p class="hero-desc" data-i18n="hero_subheadline">
+        Apprentice at Zürcher Kantonalbank | Python, APIs, Data Analysis | AI-driven development
+      </p>
       <p class="hero-desc" data-i18n="hero_desc">
-        19-jähriger Digital Business Developer bei der ZKB. Ich entwickle Trading Bots,
-        automatisiere Prozesse und baue AI-getriebene Produkte an der Schnittstelle von Technologie und Finanzen.
+        I build practical solutions combining business understanding, software and artificial intelligence.
       </p>
       <div class="hero-ctas">
         <a href="https://github.com/danizh910" target="_blank" class="btn btn-primary" data-i18n="cta_github">GitHub ansehen</a>
@@ -732,63 +745,49 @@
     <div class="about-grid">
       <div class="about-text reveal">
         <p data-i18n="about_p1">
-          Ich bin Daniel aus <span>Zürich</span> und mache aktuell meine Lehre als <span>Entwickler Digitales Business EFZ</span>
-          bei der Zürcher Kantonalbank.
+          I work where business logic and technical execution meet.
+          I like building systems that solve real problems and deliver measurable outcomes.
         </p>
         <p data-i18n="about_p2">
-          Mein Schwerpunkt liegt in <span>Automatisierung, AI-Workflows und FinTech-Projekten</span>.
-          Ich kombiniere technische Umsetzung mit einem klaren Business-Fokus.
+          I am currently an apprentice at <span>Zürcher Kantonalbank</span>, where I learn from real banking operations and apply that context to digital projects.
         </p>
         <p data-i18n="about_p3">
-          Ich möchte mit meiner Arbeit zeigen, dass ich Ideen schnell in funktionale Produkte übersetzen kann —
-          sauber, modern und skalierbar.
+          My focus is delivery: trading tools, automation bots, data analysis workflows, and practical web apps.
+          I build and test, not just concept slides.
+        </p>
+        <p data-i18n="about_p4">
+          AI tools like <span>Codex and Claude</span> are part of my workflow to move faster from idea to implementation while keeping quality high.
         </p>
       </div>
 
       <div class="skills-grid reveal">
-        <div class="skill-item">
-          <div class="skill-header"><span>Python</span><span>86%</span></div>
-          <div class="skill-bar"><div class="skill-fill" data-width="86"></div></div>
+        <div class="service-card">
+          <h3 data-i18n="core_skills_title">Core Skills</h3>
+          <p data-i18n="core_skills_list">Python (7/10) · SQL (7/10) · Data Analysis · APIs</p>
         </div>
-        <div class="skill-item">
-          <div class="skill-header"><span>SQL</span><span>80%</span></div>
-          <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
+        <div class="service-card">
+          <h3 data-i18n="tools_title">Tools & Workflow</h3>
+          <p data-i18n="tools_list">GitHub · AI / Prompt Engineering · Codex / Claude · Jira / Scrum</p>
         </div>
-        <div class="skill-item">
-          <div class="skill-header"><span>PineScript</span><span>75%</span></div>
-          <div class="skill-bar"><div class="skill-fill" data-width="75"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-header"><span>TypeScript / JS</span><span>70%</span></div>
-          <div class="skill-bar"><div class="skill-fill" data-width="70"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-header"><span>n8n / APIs</span><span>78%</span></div>
-          <div class="skill-bar"><div class="skill-fill" data-width="78"></div></div>
+        <div class="service-card">
+          <h3 data-i18n="domains_title">Domains</h3>
+          <p data-i18n="domains_list">Finance & Banking · Crypto & Trading · Automation & Systems</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="services">
+  <section id="how">
     <div class="section-header reveal">
       <span class="section-num">02</span>
-      <h2 class="section-title" data-i18n="services_title">Was ich umsetze</h2>
+      <h2 class="section-title" data-i18n="services_title">How I Work</h2>
       <div class="section-line"></div>
     </div>
 
     <div class="service-grid reveal">
-      <article class="service-card">
-        <h3 data-i18n="service1_title">Automation Systems</h3>
-        <p data-i18n="service1_desc">Prozesse mit APIs, n8n und Python automatisieren, damit Teams effizienter arbeiten und weniger repetitive Aufgaben haben.</p>
-      </article>
-      <article class="service-card">
-        <h3 data-i18n="service2_title">AI Prototyping</h3>
-        <p data-i18n="service2_desc">Schnelle MVPs mit AI-Fokus: Ideen validieren, User-Feedback sammeln und iterativ zu einem produktiven Tool entwickeln.</p>
-      </article>
-      <article class="service-card">
-        <h3 data-i18n="service3_title">FinTech & Trading Tools</h3>
-        <p data-i18n="service3_desc">Entwicklung datengetriebener Trading- und Analyse-Workflows mit klarem Fokus auf Funktionalität, Stabilität und Transparenz.</p>
+      <article class="service-card" style="grid-column: 1 / -1;">
+        <h3 data-i18n="service1_title">How I Work</h3>
+        <p data-i18n="service1_desc">I combine business understanding with technical execution and AI-driven development. Instead of only planning systems, I actively build, test and iterate solutions.</p>
       </article>
     </div>
   </section>
@@ -796,66 +795,84 @@
   <section id="projects">
     <div class="section-header reveal">
       <span class="section-num">03</span>
-      <h2 class="section-title" data-i18n="projects_title">GitHub Projekte</h2>
+      <h2 class="section-title" data-i18n="projects_title">Projects</h2>
       <div class="section-line"></div>
     </div>
 
     <div class="projects-grid reveal">
-      <a href="https://github.com/danizh910/feedback" target="_blank" class="project-card">
-        <div class="project-lang">HTML</div>
-        <div class="project-name">feedback</div>
-        <div class="project-desc" data-i18n="project1_desc">Feedback-Webapp zur strukturierten Erfassung und Verwaltung von Nutzer-Inputs in digitalen Projekten.</div>
-        <div class="project-link" data-i18n="project_link">Repository ansehen</div>
+      <a href="https://github.com/danizh910" target="_blank" class="project-card">
+        <div class="project-lang">Python · APIs</div>
+        <div class="project-name">Trading Bot</div>
+        <div class="project-desc" data-i18n="project1_desc">
+          <ul class="project-list">
+            <li>Python bot connected to exchange APIs.</li>
+            <li>Built for crypto market strategies.</li>
+            <li>Includes data analysis and automated execution.</li>
+          </ul>
+        </div>
+        <div class="project-link" data-i18n="project_link">View repository</div>
       </a>
 
-      <a href="https://github.com/danizh910/eigene_erste_wohnung" target="_blank" class="project-card">
-        <div class="project-lang">TypeScript</div>
-        <div class="project-name">eigene_erste_wohnung</div>
-        <div class="project-desc" data-i18n="project2_desc">Digitale Unterstützung für den Schritt in die erste eigene Wohnung – mit klarem Nutzerfokus.</div>
-        <div class="project-link" data-i18n="project_link">Repository ansehen</div>
+      <a href="https://github.com/danizh910" target="_blank" class="project-card">
+        <div class="project-lang">Python · Telegram</div>
+        <div class="project-name">Telegram Bot</div>
+        <div class="project-desc" data-i18n="project2_desc">
+          <ul class="project-list">
+            <li>Automation and notification system.</li>
+            <li>Tracks selected events and signals.</li>
+            <li>Sends fast alerts directly to Telegram.</li>
+          </ul>
+        </div>
+        <div class="project-link" data-i18n="project_link">View repository</div>
       </a>
 
-      <a href="https://github.com/danizh910/Sidequest_generator" target="_blank" class="project-card">
-        <div class="project-lang">JavaScript</div>
-        <div class="project-name">Sidequest_generator</div>
-        <div class="project-desc" data-i18n="project3_desc">Gamifiziertes Produktivitäts-Tool zur Sidequest-Generierung für mehr Struktur und Abwechslung.</div>
-        <div class="project-link" data-i18n="project_link">Repository ansehen</div>
+      <a href="https://github.com/danizh910" target="_blank" class="project-card">
+        <div class="project-lang">HTML · CSS · JS</div>
+        <div class="project-name">Consent Web App</div>
+        <div class="project-desc" data-i18n="project3_desc">
+          <ul class="project-list">
+            <li>Cybersecurity awareness web app.</li>
+            <li>Shows what browser data websites can access.</li>
+            <li>Built with plain HTML, CSS and JavaScript.</li>
+          </ul>
+        </div>
+        <div class="project-link" data-i18n="project_link">View repository</div>
       </a>
 
-      <a href="https://github.com/danizh910/protopye_erste_wohnung" target="_blank" class="project-card">
-        <div class="project-lang">JavaScript</div>
-        <div class="project-name">protopye_erste_wohnung</div>
-        <div class="project-desc" data-i18n="project4_desc">Prototyp für den Beratungsprozess “Erste eigene Wohnung” als digitalisierter End-to-End-Flow.</div>
-        <div class="project-link" data-i18n="project_link">Repository ansehen</div>
+      <a href="https://github.com/danizh910" target="_blank" class="project-card">
+        <div class="project-lang">Data Analysis</div>
+        <div class="project-name">HR Funnel Analysis</div>
+        <div class="project-desc" data-i18n="project4_desc">
+          <ul class="project-list">
+            <li>Analyzed funnel behavior across recruitment steps.</li>
+            <li>Found drop-off points and process friction.</li>
+            <li>Defined concrete optimization opportunities.</li>
+          </ul>
+        </div>
+        <div class="project-link" data-i18n="project_link">View repository</div>
+      </a>
+
+      <a href="https://github.com/danizh910" target="_blank" class="project-card">
+        <div class="project-lang">E-Commerce</div>
+        <div class="project-name">Shopify Store Setup</div>
+        <div class="project-desc" data-i18n="project5_desc">
+          <ul class="project-list">
+            <li>Built and tested a complete Shopify setup.</li>
+            <li>Configured products, checkout and structure.</li>
+            <li>Validated the store flow from user perspective.</li>
+          </ul>
+        </div>
+        <div class="project-link" data-i18n="project_link">View repository</div>
       </a>
     </div>
-
-    <a href="https://github.com/danizh910" target="_blank" class="btn btn-outline reveal" data-i18n="projects_all">Alle Projekte auf GitHub →</a>
+    <a href="https://github.com/danizh910" target="_blank" class="btn btn-outline reveal" data-i18n="projects_all">All projects on GitHub →</a>
   </section>
 
-  <section id="stack">
-    <div class="section-header reveal">
-      <span class="section-num">04</span>
-      <h2 class="section-title" data-i18n="stack_title">Tech Stack</h2>
-      <div class="section-line"></div>
-    </div>
-
-    <div class="stack-grid reveal">
-      <div class="stack-item"><div class="stack-icon">🐍</div><div class="stack-name">Python</div></div>
-      <div class="stack-item"><div class="stack-icon">🗄️</div><div class="stack-name">SQL</div></div>
-      <div class="stack-item"><div class="stack-icon">📈</div><div class="stack-name">PineScript</div></div>
-      <div class="stack-item"><div class="stack-icon">⚡</div><div class="stack-name">TypeScript</div></div>
-      <div class="stack-item"><div class="stack-icon">🔄</div><div class="stack-name">n8n</div></div>
-      <div class="stack-item"><div class="stack-icon">🤖</div><div class="stack-name">AI Tools</div></div>
-      <div class="stack-item"><div class="stack-icon">🔗</div><div class="stack-name">APIs</div></div>
-      <div class="stack-item"><div class="stack-icon">🐙</div><div class="stack-name">GitHub</div></div>
-    </div>
-  </section>
 
   <section id="contact">
     <div class="contact-box reveal">
-      <h2 class="contact-title" data-i18n="contact_title">Lass uns etwas Starkes bauen.</h2>
-      <p class="contact-sub" data-i18n="contact_sub">Wenn du einen motivierten Junior mit starkem Delivery-Mindset suchst, lass uns vernetzen.</p>
+      <h2 class="contact-title" data-i18n="contact_title">Interested in working together or seeing more?</h2>
+      <p class="contact-sub" data-i18n="contact_sub">Let’s connect through GitHub or LinkedIn.</p>
       <div class="contact-actions">
         <a href="https://github.com/danizh910" target="_blank" class="btn btn-primary" data-i18n="contact_github">GitHub ansehen ↗</a>
         <a href="https://www.linkedin.com/in/daniel-luterbach-a1b34b308/" target="_blank" class="btn btn-outline" data-i18n="contact_linkedin">LinkedIn öffnen ↗</a>
@@ -935,42 +952,42 @@
     const i18n = {
       de: {
         nav_about: 'Über mich',
-        nav_services: 'Leistungen',
+        nav_services: 'Skills',
         nav_projects: 'Projekte',
-        nav_stack: 'Stack',
+        nav_stack: 'How I Work',
         nav_contact: 'Kontakt',
-        hero_tag: 'Verfügbar für Projekte · Zürich, CH',
-        hero_desc: '19-jähriger Digital Business Developer bei der ZKB. Ich entwickle Trading Bots, automatisiere Prozesse und baue AI-getriebene Produkte an der Schnittstelle von Technologie und Finanzen.',
+        hero_tag: 'Offen für Opportunities · Zürich, CH',
+        hero_headline: '<span class="line">Business & Tech Engineer building data-driven systems</span><span class="line accent">in AI, finance and crypto.</span>',
+        hero_subheadline: 'Apprentice at Zürcher Kantonalbank | Python, APIs, Data Analysis | AI-driven development',
+        hero_desc: 'I build practical solutions combining business understanding, software and artificial intelligence.',
         cta_github: 'GitHub ansehen',
         cta_linkedin: 'LinkedIn Profil',
         cta_projects: 'Meine Projekte',
-        terminal_line: 'die zukunft bauen, ein commit nach dem anderen',
+        terminal_line: 'building real systems, one iteration at a time',
         stat_age_label: 'Alter',
         stat_repos_label: 'Öffentliche Repos',
         stat_focus_label: 'Fokus',
-        stat_focus_value: 'Automation + AI',
+        stat_focus_value: 'AI + Data Systems',
         stat_location_label: 'Standort',
         about_title: 'Über mich',
-        about_p1: 'Ich bin Daniel aus <span>Zürich</span> und mache aktuell meine Lehre als <span>Entwickler Digitales Business EFZ</span> bei der Zürcher Kantonalbank.',
-        about_p2: 'Mein Schwerpunkt liegt in <span>Automatisierung, AI-Workflows und FinTech-Projekten</span>. Ich kombiniere technische Umsetzung mit einem klaren Business-Fokus.',
-        about_p3: 'Ich möchte mit meiner Arbeit zeigen, dass ich Ideen schnell in funktionale Produkte übersetzen kann — sauber, modern und skalierbar.',
-        services_title: 'Was ich umsetze',
-        service1_title: 'Automation Systems',
-        service1_desc: 'Prozesse mit APIs, n8n und Python automatisieren, damit Teams effizienter arbeiten und weniger repetitive Aufgaben haben.',
-        service2_title: 'AI Prototyping',
-        service2_desc: 'Schnelle MVPs mit AI-Fokus: Ideen validieren, User-Feedback sammeln und iterativ zu einem produktiven Tool entwickeln.',
-        service3_title: 'FinTech & Trading Tools',
-        service3_desc: 'Entwicklung datengetriebener Trading- und Analyse-Workflows mit klarem Fokus auf Funktionalität, Stabilität und Transparenz.',
-        projects_title: 'GitHub Projekte',
-        project1_desc: 'Feedback-Webapp zur strukturierten Erfassung und Verwaltung von Nutzer-Inputs in digitalen Projekten.',
-        project2_desc: 'Digitale Unterstützung für den Schritt in die erste eigene Wohnung – mit klarem Nutzerfokus.',
-        project3_desc: 'Gamifiziertes Produktivitäts-Tool zur Sidequest-Generierung für mehr Struktur und Abwechslung.',
-        project4_desc: 'Prototyp für den Beratungsprozess “Erste eigene Wohnung” als digitalisierter End-to-End-Flow.',
+        about_p1: 'I work where business logic and technical execution meet. I build systems that solve real problems and deliver measurable outcomes.',
+        about_p2: 'I am currently an apprentice at <span>Zürcher Kantonalbank</span>, where I learn from real banking operations and apply that context to digital projects.',
+        about_p3: 'My focus is delivery: trading tools, automation bots, data analysis workflows, and practical web apps. I build and test, not just concept slides.',
+        about_p4: 'AI tools like <span>Codex and Claude</span> are part of my workflow to move faster from idea to implementation while keeping quality high.',
+        core_skills_title: 'Core Skills',
+        core_skills_list: 'Python (7/10) · SQL (7/10) · Data Analysis · APIs',
+        tools_title: 'Tools & Workflow',
+        tools_list: 'GitHub · AI / Prompt Engineering · Codex / Claude · Jira / Scrum',
+        domains_title: 'Domains',
+        domains_list: 'Finance & Banking · Crypto & Trading · Automation & Systems',
+        services_title: 'How I Work',
+        service1_title: 'How I Work',
+        service1_desc: 'I combine business understanding with technical execution and AI-driven development. Instead of only planning systems, I actively build, test and iterate solutions.',
+        projects_title: 'Projects',
         project_link: 'Repository ansehen',
         projects_all: 'Alle Projekte auf GitHub →',
-        stack_title: 'Tech Stack',
-        contact_title: 'Lass uns etwas Starkes bauen.',
-        contact_sub: 'Wenn du einen motivierten Junior mit starkem Delivery-Mindset suchst, lass uns vernetzen.',
+        contact_title: 'Interested in working together or seeing more?',
+        contact_sub: 'Let’s connect through GitHub or LinkedIn.',
         contact_github: 'GitHub ansehen ↗',
         contact_linkedin: 'LinkedIn öffnen ↗',
         footer_copy: '© 2026 Daniel Luterbach — Zürich, Schweiz',
@@ -978,42 +995,42 @@
       },
       en: {
         nav_about: 'About',
-        nav_services: 'Services',
+        nav_services: 'Skills',
         nav_projects: 'Projects',
-        nav_stack: 'Stack',
+        nav_stack: 'How I Work',
         nav_contact: 'Contact',
-        hero_tag: 'Available for Projects · Zurich, CH',
-        hero_desc: '19-year-old Digital Business Developer at ZKB. I build trading bots, automate workflows, and create AI-driven products at the intersection of technology and finance.',
+        hero_tag: 'Open to opportunities · Zurich, CH',
+        hero_headline: '<span class="line">Business & Tech Engineer building data-driven systems</span><span class="line accent">in AI, finance and crypto.</span>',
+        hero_subheadline: 'Apprentice at Zürcher Kantonalbank | Python, APIs, Data Analysis | AI-driven development',
+        hero_desc: 'I build practical solutions combining business understanding, software and artificial intelligence.',
         cta_github: 'View GitHub',
         cta_linkedin: 'LinkedIn Profile',
         cta_projects: 'My Projects',
-        terminal_line: 'building the future, one commit at a time',
+        terminal_line: 'building real systems, one iteration at a time',
         stat_age_label: 'Age',
         stat_repos_label: 'Public Repos',
         stat_focus_label: 'Focus',
-        stat_focus_value: 'Automation + AI',
+        stat_focus_value: 'AI + Data Systems',
         stat_location_label: 'Location',
-        about_title: 'About me',
-        about_p1: 'I am Daniel from <span>Zurich</span> and currently doing my apprenticeship as <span>Digital Business Developer EFZ</span> at Zürcher Kantonalbank.',
-        about_p2: 'My core area is <span>automation, AI workflows and FinTech projects</span>. I combine technical implementation with a strong business mindset.',
-        about_p3: 'My goal is to prove that I can turn ideas into functional products quickly — clean, modern, and scalable.',
-        services_title: 'What I build',
-        service1_title: 'Automation Systems',
-        service1_desc: 'Automating processes with APIs, n8n and Python so teams can work faster and remove repetitive manual tasks.',
-        service2_title: 'AI Prototyping',
-        service2_desc: 'Rapid AI-first MVPs: validate ideas, collect feedback, and iterate towards production-ready solutions.',
-        service3_title: 'FinTech & Trading Tools',
-        service3_desc: 'Building data-driven trading and analytics workflows with a focus on functionality, stability, and clarity.',
-        projects_title: 'GitHub Projects',
-        project1_desc: 'Feedback web app for structured collection and management of user inputs in digital products.',
-        project2_desc: 'Digital support for moving into your first apartment, designed with practical user focus.',
-        project3_desc: 'Gamified productivity app that generates side quests for structure and motivation.',
-        project4_desc: 'Prototype for a “first apartment” advisory process as a digitized end-to-end flow.',
+        about_title: 'About',
+        about_p1: 'I work where business logic and technical execution meet. I build systems that solve real problems and deliver measurable outcomes.',
+        about_p2: 'I am currently an apprentice at <span>Zürcher Kantonalbank</span>, where I learn from real banking operations and apply that context to digital projects.',
+        about_p3: 'My focus is delivery: trading tools, automation bots, data analysis workflows, and practical web apps. I build and test, not just concept slides.',
+        about_p4: 'AI tools like <span>Codex and Claude</span> are part of my workflow to move faster from idea to implementation while keeping quality high.',
+        core_skills_title: 'Core Skills',
+        core_skills_list: 'Python (7/10) · SQL (7/10) · Data Analysis · APIs',
+        tools_title: 'Tools & Workflow',
+        tools_list: 'GitHub · AI / Prompt Engineering · Codex / Claude · Jira / Scrum',
+        domains_title: 'Domains',
+        domains_list: 'Finance & Banking · Crypto & Trading · Automation & Systems',
+        services_title: 'How I Work',
+        service1_title: 'How I Work',
+        service1_desc: 'I combine business understanding with technical execution and AI-driven development. Instead of only planning systems, I actively build, test and iterate solutions.',
+        projects_title: 'Projects',
         project_link: 'View repository',
         projects_all: 'All projects on GitHub →',
-        stack_title: 'Tech Stack',
-        contact_title: "Let’s build something impactful.",
-        contact_sub: 'If you are looking for a motivated junior with a strong delivery mindset, let’s connect.',
+        contact_title: 'Interested in working together or seeing more?',
+        contact_sub: 'Let’s connect through GitHub or LinkedIn.',
         contact_github: 'View GitHub ↗',
         contact_linkedin: 'Open LinkedIn ↗',
         footer_copy: '© 2026 Daniel Luterbach — Zurich, Switzerland',
