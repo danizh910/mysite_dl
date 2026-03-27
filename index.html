@@ -2,23 +2,30 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Daniel Luterbach — Digital Builder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Daniel Luterbach | Entwickler digitales Business EFZ in Ausbildung</title>
+  <meta name="description" content="Portfolio von Daniel Luterbach: Entwickler digitales Business EFZ in Ausbildung bei der Zürcher Kantonalbank mit Fokus auf digitale Lösungen, Daten, AI und Automatisierung." />
+  <meta property="og:title" content="Daniel Luterbach | Portfolio" />
+  <meta property="og:description" content="Praxisnahes Portfolio mit Projekten aus Datenanalyse, Automatisierung, Webentwicklung und AI-gestützter Umsetzung." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="de_CH" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1' y1='0' y2='1'%3E%3Cstop offset='0%25' stop-color='%2300e5ff'/%3E%3Cstop offset='100%25' stop-color='%237c3aed'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='22' fill='%230a0a0f'/%3E%3Ctext x='50' y='61' text-anchor='middle' font-family='Arial, sans-serif' font-size='43' font-weight='700' fill='url(%23g)'%3EDL%3C/text%3E%3C/svg%3E" />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       --bg: #0a0a0f;
       --surface: #111118;
-      --border: #1e1e2e;
+      --border: #222236;
       --accent: #00e5ff;
       --accent2: #7c3aed;
-      --text: #e8e8f0;
-      --muted: #8a8aa6;
+      --text: #edf0ff;
+      --muted: #a2a6be;
       --card: #13131f;
-      --card-hover: #161625;
+      --card-hover: #171728;
+      --focus: #79f2ff;
+      --max-width: 1240px;
     }
 
     html { scroll-behavior: smooth; }
@@ -28,60 +35,46 @@
       background: var(--bg);
       color: var(--text);
       overflow-x: hidden;
-      cursor: none;
-    }
-
-    .cursor {
-      width: 10px; height: 10px;
-      background: var(--accent);
-      border-radius: 50%;
-      position: fixed;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      transition: transform 0.12s, width 0.2s, height 0.2s;
-      mix-blend-mode: difference;
-    }
-
-    .cursor-ring {
-      width: 34px; height: 34px;
-      border: 1px solid rgba(0,229,255,0.45);
-      border-radius: 50%;
-      position: fixed;
-      pointer-events: none;
-      z-index: 9998;
-      transform: translate(-50%, -50%);
-      transition: transform 0.15s ease-out, width 0.3s, height 0.3s, opacity 0.3s;
+      line-height: 1.6;
     }
 
     body::before {
       content: '';
-      position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.35;
-    }
-
-    body::after {
-      content: '';
-      position: fixed; inset: 0;
-      background-image:
-        linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
+      position: fixed;
+      inset: 0;
+      background-image: linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
       background-size: 64px 64px;
       pointer-events: none;
       z-index: 0;
     }
 
+    a, button { color: inherit; }
+
+    a:focus-visible,
+    button:focus-visible,
+    .mobile-menu:focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 3px;
+      border-radius: 8px;
+    }
+
     nav {
-      position: fixed; top: 0; left: 0; right: 0;
+      position: sticky;
+      top: 0;
       z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 18px 40px;
-      background: rgba(10,10,15,0.75);
-      backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(14px);
+      background: rgba(10, 10, 15, 0.85);
+    }
+
+    .nav-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
     }
 
     .nav-logo {
@@ -89,49 +82,59 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      color: var(--accent);
-      font-weight: 800;
-      letter-spacing: 0.1em;
       font-family: 'Syne', sans-serif;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      color: var(--accent);
     }
 
     .logo-mark {
-      width: 36px; height: 36px;
+      width: 36px;
+      height: 36px;
       border-radius: 11px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(145deg, rgba(0,229,255,0.15), rgba(124,58,237,0.18));
-      border: 1px solid rgba(0,229,255,0.3);
-      box-shadow: inset 0 0 30px rgba(0,229,255,0.06);
+      background: linear-gradient(145deg, rgba(0,229,255,0.15), rgba(124,58,237,0.16));
+      border: 1px solid rgba(0,229,255,0.35);
     }
 
-    .nav-links { display: flex; list-style: none; gap: 26px; }
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
+    .mobile-menu {
+      display: none;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text);
+      padding: 8px 12px;
+      font: inherit;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      position: relative;
-      transition: color 0.2s;
     }
 
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      left: 0; bottom: -6px;
-      width: 100%; height: 1px;
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.25s;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.11em;
+      padding-bottom: 5px;
+      border-bottom: 1px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
     }
 
     .nav-links a:hover,
-    .nav-links a.active { color: var(--text); }
-    .nav-links a:hover::after,
-    .nav-links a.active::after { transform: scaleX(1); }
+    .nav-links a.active {
+      color: var(--text);
+      border-color: rgba(0,229,255,0.65);
+    }
 
     .nav-actions {
       display: flex;
@@ -143,360 +146,278 @@
       border: 1px solid var(--border);
       background: transparent;
       color: var(--muted);
-      padding: 10px 14px;
+      padding: 9px 13px;
       font-family: inherit;
       font-size: 0.7rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      cursor: none;
       transition: 0.2s;
     }
+
     .lang-btn:hover { border-color: var(--accent); color: var(--accent); }
 
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
+    .btn {
+      display: inline-flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 40px;
-      padding: 120px 48px 80px;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 18px;
+      border: 1px solid var(--border);
+      text-decoration: none;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: transform 0.2s, border-color 0.2s, color 0.2s, background 0.2s;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn-primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #050509;
+      font-weight: 700;
+    }
+
+    .btn-primary:hover {
+      background: #99f4ff;
+      border-color: #99f4ff;
+    }
+
+    .btn-outline {
+      color: var(--muted);
+      background: transparent;
+    }
+
+    .btn-outline:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    main {
+      position: relative;
       z-index: 1;
-      overflow: hidden;
-      max-width: 1300px;
+    }
+
+    .hero {
+      max-width: var(--max-width);
       margin: 0 auto;
+      min-height: calc(100vh - 70px);
+      display: grid;
+      grid-template-columns: 1.3fr 0.8fr;
+      gap: 30px;
+      align-items: center;
+      padding: 84px 24px 56px;
     }
-
-    .hero-glow,
-    .hero-glow2 {
-      position: absolute;
-      border-radius: 50%;
-      pointer-events: none;
-      filter: blur(4px);
-    }
-
-    .hero-glow {
-      width: 560px; height: 560px;
-      background: radial-gradient(circle, rgba(0,229,255,0.08) 0%, transparent 70%);
-      top: 52%; left: 36%;
-      transform: translate(-50%, -50%);
-      animation: pulse 7s ease-in-out infinite;
-    }
-
-    .hero-glow2 {
-      width: 360px; height: 360px;
-      background: radial-gradient(circle, rgba(124,58,237,0.11) 0%, transparent 70%);
-      bottom: 5%; right: 4%;
-      animation: pulse 9s ease-in-out infinite reverse;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 0.55; transform: translate(-50%, -50%) scale(1); }
-      50% { opacity: 0.9; transform: translate(-50%, -50%) scale(1.1); }
-    }
-
-    .hero-content { max-width: 760px; z-index: 2; }
 
     .hero-tag {
       display: inline-flex;
       align-items: center;
-      gap: 9px;
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
+      gap: 8px;
+      border: 1px solid rgba(0,229,255,0.28);
+      padding: 6px 12px;
       color: var(--accent);
-      border: 1px solid rgba(0,229,255,0.25);
-      padding: 6px 14px;
-      margin-bottom: 26px;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.2s forwards;
+      font-size: 0.68rem;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
     }
 
     .hero-tag::before {
       content: '';
-      width: 6px; height: 6px;
-      background: var(--accent);
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
-      animation: blink 1.5s infinite;
+      background: var(--accent);
     }
-
-    @keyframes blink { 0%,100% { opacity:1 } 50% { opacity:0.2 } }
 
     .hero-name {
       font-family: 'Syne', sans-serif;
-      font-size: clamp(3rem, 9vw, 7rem);
-      font-weight: 800;
-      line-height: 0.9;
+      font-size: clamp(2.4rem, 7.5vw, 5.5rem);
+      line-height: 0.95;
       letter-spacing: -0.03em;
-      margin-bottom: 22px;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.35s forwards;
+      margin-bottom: 18px;
     }
 
     .hero-name .line { display: block; }
     .hero-name .accent { color: var(--accent); }
 
+    .hero-subheadline {
+      color: var(--text);
+      font-size: 0.92rem;
+      line-height: 1.8;
+      margin-bottom: 12px;
+      max-width: 650px;
+    }
+
     .hero-desc {
-      font-size: 0.86rem;
-      line-height: 1.85;
       color: var(--muted);
-      max-width: 580px;
-      margin-bottom: 36px;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.55s forwards;
+      font-size: 0.82rem;
+      line-height: 1.85;
+      max-width: 650px;
+      margin-bottom: 28px;
     }
 
     .hero-ctas {
       display: flex;
-      gap: 14px;
       flex-wrap: wrap;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.75s forwards;
-    }
-
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      padding: 13px 24px;
-      font-family: inherit;
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      text-decoration: none;
-      cursor: none;
-      transition: all 0.25s;
-      border: 1px solid transparent;
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #000;
-      font-weight: 700;
-    }
-    .btn-primary:hover {
-      background: #fff;
-      transform: translateY(-2px);
-      box-shadow: 0 14px 30px rgba(0,229,255,0.28);
-    }
-
-    .btn-outline {
-      border: 1px solid var(--border);
-      color: var(--muted);
-      background: transparent;
-    }
-    .btn-outline:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      transform: translateY(-2px);
+      gap: 12px;
     }
 
     .hero-side {
-      z-index: 2;
       display: grid;
-      gap: 16px;
-      min-width: 260px;
-      opacity: 0;
-      animation: fadeIn 1s 1s forwards;
+      gap: 12px;
     }
 
     .side-card {
-      padding: 18px;
-      background: rgba(19,19,31,0.9);
+      background: rgba(19,19,31,0.95);
       border: 1px solid var(--border);
-      transition: 0.25s;
+      padding: 16px;
     }
-    .side-card:hover { border-color: rgba(0,229,255,0.4); transform: translateY(-2px); }
 
     .side-kicker {
       color: var(--muted);
-      font-size: 0.62rem;
+      font-size: 0.64rem;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      letter-spacing: 0.14em;
       margin-bottom: 6px;
     }
 
     .side-value {
       font-family: 'Syne', sans-serif;
-      font-size: 1.45rem;
+      font-size: 1.2rem;
       font-weight: 700;
     }
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(26px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
     section {
-      position: relative;
-      z-index: 1;
-      padding: 90px 48px;
-      max-width: 1240px;
+      max-width: var(--max-width);
       margin: 0 auto;
+      padding: 74px 24px;
+      scroll-margin-top: 88px;
     }
 
     .section-header {
       display: flex;
       align-items: center;
-      gap: 16px;
-      margin-bottom: 52px;
+      gap: 14px;
+      margin-bottom: 30px;
     }
 
     .section-num {
       font-family: 'Syne', sans-serif;
-      font-size: 0.75rem;
+      font-size: 0.74rem;
       color: var(--accent);
       letter-spacing: 0.2em;
     }
 
     .section-title {
       font-family: 'Syne', sans-serif;
-      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      font-size: clamp(1.7rem, 3.6vw, 2.3rem);
       font-weight: 800;
       letter-spacing: -0.02em;
     }
 
-    .section-line { flex: 1; height: 1px; background: var(--border); }
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
 
     .about-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 56px;
-      align-items: start;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 26px;
     }
 
     .about-text p {
       color: var(--muted);
+      font-size: 0.82rem;
       line-height: 1.85;
-      font-size: 0.84rem;
       margin-bottom: 14px;
     }
 
-    .about-text p span { color: var(--accent); }
+    .about-text strong { color: var(--text); font-weight: 700; }
 
-    .skills-grid { display: flex; flex-direction: column; gap: 16px; }
-
-    .skill-header {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 8px;
-      font-size: 0.68rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--text);
-    }
-
-    .skill-bar {
-      height: 2px;
-      background: var(--border);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .skill-fill {
-      position: absolute;
-      top: 0; left: 0; bottom: 0;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      width: 0;
-      transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .service-grid {
+    .skills-columns {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 14px;
+      gap: 12px;
     }
 
-    .service-card {
+    .skill-card {
       background: var(--card);
       border: 1px solid var(--border);
-      padding: 24px;
-      transition: 0.25s;
-    }
-    .service-card:hover {
-      border-color: rgba(0,229,255,0.35);
-      transform: translateY(-3px);
-      background: var(--card-hover);
+      padding: 18px;
     }
 
-    .service-card h3 {
+    .skill-card h3 {
       font-family: 'Syne', sans-serif;
       font-size: 1rem;
       margin-bottom: 10px;
     }
 
-    .service-card p {
-      color: var(--muted);
-      font-size: 0.76rem;
-      line-height: 1.7;
+    .pill-list {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
     }
 
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1px;
-      background: var(--border);
+    .pill-list li {
       border: 1px solid var(--border);
-      margin-bottom: 30px;
+      background: rgba(255,255,255,0.01);
+      color: var(--muted);
+      font-size: 0.72rem;
+      line-height: 1.35;
+      padding: 6px 10px;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
     }
 
     .project-card {
       background: var(--card);
-      padding: 34px;
-      text-decoration: none;
-      display: block;
-      transition: 0.25s;
-      position: relative;
-      overflow: hidden;
+      border: 1px solid var(--border);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-height: 260px;
     }
 
-    .project-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .project-card:hover { background: var(--card-hover); }
-    .project-card:hover::before { transform: scaleX(1); }
-
-    .project-lang {
-      display: inline-block;
-      font-size: 0.58rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
+    .project-label {
+      display: inline-flex;
+      align-self: flex-start;
+      border: 1px solid rgba(0,229,255,0.3);
       color: var(--accent);
-      border: 1px solid rgba(0,229,255,0.2);
-      padding: 3px 10px;
-      margin-bottom: 16px;
+      font-size: 0.58rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      padding: 3px 8px;
     }
 
     .project-name {
       font-family: 'Syne', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 8px;
+      font-size: 1.08rem;
+      margin-top: 2px;
     }
 
     .project-desc {
-      font-size: 0.75rem;
       color: var(--muted);
+      font-size: 0.74rem;
       line-height: 1.7;
-      margin-bottom: 22px;
     }
 
     .project-list {
       list-style: none;
       display: grid;
       gap: 6px;
+      margin-top: auto;
+      color: var(--muted);
+      font-size: 0.72rem;
     }
 
     .project-list li::before {
@@ -505,108 +426,85 @@
     }
 
     .project-link {
-      font-size: 0.64rem;
-      letter-spacing: 0.15em;
+      margin-top: 12px;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--accent);
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      text-decoration: none;
     }
 
-    .project-link::after {
-      content: '→';
-      transition: transform 0.2s;
-    }
+    .project-link:hover { text-decoration: underline; }
 
-    .project-card:hover .project-link::after { transform: translateX(4px); }
-
-    .stack-grid {
+    .workflow-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 12px;
     }
 
-    .stack-item {
+    .workflow-card {
       background: var(--card);
       border: 1px solid var(--border);
       padding: 20px;
-      text-align: center;
-      transition: 0.25s;
     }
 
-    .stack-item:hover {
-      border-color: var(--accent);
-      transform: translateY(-4px);
-      box-shadow: 0 8px 26px rgba(0,229,255,0.12);
+    .workflow-card h3 {
+      font-family: 'Syne', sans-serif;
+      margin-bottom: 8px;
+      font-size: 0.98rem;
     }
 
-    .stack-icon { font-size: 1.4rem; margin-bottom: 8px; }
-
-    .stack-name {
-      font-size: 0.64rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
+    .workflow-card p {
       color: var(--muted);
+      font-size: 0.76rem;
+      line-height: 1.75;
     }
 
     .contact-box {
       background: var(--card);
       border: 1px solid var(--border);
-      padding: 56px;
+      padding: 42px 20px;
       text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .contact-box::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 50% 0%, rgba(0,229,255,0.05) 0%, transparent 60%);
     }
 
     .contact-title {
       font-family: 'Syne', sans-serif;
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      margin-bottom: 12px;
-      position: relative;
+      font-size: clamp(1.8rem, 4vw, 2.9rem);
+      margin-bottom: 10px;
     }
 
     .contact-sub {
       color: var(--muted);
       font-size: 0.82rem;
-      margin-bottom: 28px;
-      position: relative;
+      max-width: 720px;
+      margin: 0 auto 24px;
     }
 
     .contact-actions {
       display: flex;
       justify-content: center;
-      gap: 12px;
       flex-wrap: wrap;
-      position: relative;
+      gap: 10px;
     }
 
     footer {
-      position: relative;
-      z-index: 1;
       border-top: 1px solid var(--border);
-      padding: 30px 48px;
+      padding: 24px;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.64rem;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-      gap: 12px;
       flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      max-width: var(--max-width);
+      margin: 0 auto;
     }
 
     .reveal {
       opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
+      transform: translateY(16px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
     }
 
     .reveal.visible {
@@ -614,451 +512,557 @@
       transform: none;
     }
 
-    .terminal {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(0,0,0,0.45);
-      border: 1px solid var(--border);
-      padding: 12px 18px;
-      font-size: 0.73rem;
-      color: var(--muted);
-      margin-top: 28px;
+    @media (max-width: 980px) {
+      .hero { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; }
     }
 
-    .terminal .prompt { color: var(--accent); }
+    @media (max-width: 820px) {
+      .mobile-menu { display: inline-flex; }
 
-    .terminal .cursor-blink {
-      display: inline-block;
-      width: 8px;
-      height: 14px;
-      background: var(--accent);
-      animation: blink 1s infinite;
-      vertical-align: middle;
-    }
-
-    @media (max-width: 900px) {
-      body, .btn, .lang-btn { cursor: auto; }
-      .cursor, .cursor-ring { display: none; }
-      nav { padding: 14px 20px; }
-      .nav-links { display: none; }
-      .hero {
-        padding: 95px 22px 52px;
+      .nav-links {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 67px;
+        background: rgba(10,10,15,0.97);
+        border-bottom: 1px solid var(--border);
+        padding: 14px 24px 18px;
+        display: none;
         flex-direction: column;
         align-items: flex-start;
       }
-      .hero-side {
-        width: 100%;
-        grid-template-columns: repeat(2, 1fr);
-        min-width: auto;
-      }
-      section { padding: 58px 20px; }
-      .about-grid { grid-template-columns: 1fr; gap: 34px; }
-      .contact-box { padding: 38px 20px; }
-      footer { padding: 24px 20px; }
+
+      .nav-links.open { display: flex; }
+
+      .nav-actions .btn { display: none; }
     }
 
-    @media (max-width: 560px) {
-      .nav-actions .btn { display: none; }
-      .hero-side { grid-template-columns: 1fr; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+      .reveal { opacity: 1; transform: none; }
     }
   </style>
 </head>
 <body>
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
+  <nav aria-label="Hauptnavigation">
+    <div class="nav-inner">
+      <a href="#top" class="nav-logo" aria-label="Daniel Luterbach Startseite">
+        <span class="logo-mark" aria-hidden="true">DL</span>
+      </a>
 
-  <nav>
-    <a href="#" class="nav-logo" aria-label="Daniel Luterbach Home">
-      <span class="logo-mark">DL</span>
-    </a>
+      <button id="mobileMenuBtn" class="mobile-menu" type="button" aria-expanded="false" aria-controls="mainNav" data-i18n="mobile_menu">Menü</button>
 
-    <ul class="nav-links">
-      <li><a href="#about" data-i18n="nav_about">Über mich</a></li>
-      <li><a href="#about" data-i18n="nav_services">Skills</a></li>
-      <li><a href="#projects" data-i18n="nav_projects">Projekte</a></li>
-      <li><a href="#how" data-i18n="nav_stack">How I Work</a></li>
-      <li><a href="#contact" data-i18n="nav_contact">Kontakt</a></li>
-    </ul>
+      <ul id="mainNav" class="nav-links">
+        <li><a href="#about" data-i18n="nav_about">Über mich</a></li>
+        <li><a href="#skills" data-i18n="nav_skills">Skills</a></li>
+        <li><a href="#projects" data-i18n="nav_projects">Projekte</a></li>
+        <li><a href="#workflow" data-i18n="nav_workflow">Arbeitsweise</a></li>
+        <li><a href="#contact" data-i18n="nav_contact">Kontakt</a></li>
+      </ul>
 
-    <div class="nav-actions">
-      <button id="langToggle" class="lang-btn" type="button">EN</button>
-      <a href="https://www.linkedin.com/in/daniel-luterbach-a1b34b308/" target="_blank" class="btn btn-outline">LinkedIn ↗</a>
+      <div class="nav-actions">
+        <button id="langToggle" class="lang-btn" type="button" aria-label="Sprache wechseln">EN</button>
+        <a href="https://www.linkedin.com/in/daniel-luterbach-a1b34b308/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" data-i18n="nav_linkedin">LinkedIn ↗</a>
+      </div>
     </div>
   </nav>
 
-  <div class="hero">
-    <div class="hero-glow"></div>
-    <div class="hero-glow2"></div>
-
-    <div class="hero-content">
-      <div class="hero-tag" data-i18n="hero_tag">Open to opportunities · Zurich, CH</div>
-      <h1 class="hero-name" data-i18n="hero_headline">
-        <span class="line">Business & Tech Engineer building data-driven systems</span>
-        <span class="line accent">in AI, finance and crypto.</span>
-      </h1>
-      <p class="hero-desc" data-i18n="hero_subheadline">
-        Apprentice at Zürcher Kantonalbank | Python, APIs, Data Analysis | AI-driven development
-      </p>
-      <p class="hero-desc" data-i18n="hero_desc">
-        I build practical solutions combining business understanding, software and artificial intelligence.
-      </p>
-      <div class="hero-ctas">
-        <a href="https://github.com/danizh910" target="_blank" class="btn btn-primary" data-i18n="cta_github">GitHub ansehen</a>
-        <a href="https://www.linkedin.com/in/daniel-luterbach-a1b34b308/" target="_blank" class="btn btn-outline" data-i18n="cta_linkedin">LinkedIn Profil</a>
-        <a href="#projects" class="btn btn-outline" data-i18n="cta_projects">Meine Projekte</a>
-      </div>
-      <div class="terminal">
-        <span class="prompt">~/daniel $</span>
-        <span data-i18n="terminal_line">building the future, one commit at a time</span>
-        <span class="cursor-blink"></span>
-      </div>
-    </div>
-
-    <div class="hero-side">
-      <div class="side-card">
-        <div class="side-kicker" data-i18n="stat_age_label">Alter</div>
-        <div class="side-value">19</div>
-      </div>
-      <div class="side-card">
-        <div class="side-kicker" data-i18n="stat_repos_label">Öffentliche Repos</div>
-        <div class="side-value">4+</div>
-      </div>
-      <div class="side-card">
-        <div class="side-kicker" data-i18n="stat_focus_label">Fokus</div>
-        <div class="side-value" data-i18n="stat_focus_value">Automation + AI</div>
-      </div>
-      <div class="side-card">
-        <div class="side-kicker" data-i18n="stat_location_label">Standort</div>
-        <div class="side-value">Zürich</div>
-      </div>
-    </div>
-  </div>
-
-  <section id="about">
-    <div class="section-header reveal">
-      <span class="section-num">01</span>
-      <h2 class="section-title" data-i18n="about_title">Über mich</h2>
-      <div class="section-line"></div>
-    </div>
-
-    <div class="about-grid">
-      <div class="about-text reveal">
-        <p data-i18n="about_p1">
-          I work where business logic and technical execution meet.
-          I like building systems that solve real problems and deliver measurable outcomes.
-        </p>
-        <p data-i18n="about_p2">
-          I am currently an apprentice at <span>Zürcher Kantonalbank</span>, where I learn from real banking operations and apply that context to digital projects.
-        </p>
-        <p data-i18n="about_p3">
-          My focus is delivery: trading tools, automation bots, data analysis workflows, and practical web apps.
-          I build and test, not just concept slides.
-        </p>
-        <p data-i18n="about_p4">
-          AI tools like <span>Codex and Claude</span> are part of my workflow to move faster from idea to implementation while keeping quality high.
-        </p>
-      </div>
-
-      <div class="skills-grid reveal">
-        <div class="service-card">
-          <h3 data-i18n="core_skills_title">Core Skills</h3>
-          <p data-i18n="core_skills_list">Python (7/10) · SQL (7/10) · Data Analysis · APIs</p>
-        </div>
-        <div class="service-card">
-          <h3 data-i18n="tools_title">Tools & Workflow</h3>
-          <p data-i18n="tools_list">GitHub · AI / Prompt Engineering · Codex / Claude · Jira / Scrum</p>
-        </div>
-        <div class="service-card">
-          <h3 data-i18n="domains_title">Domains</h3>
-          <p data-i18n="domains_list">Finance & Banking · Crypto & Trading · Automation & Systems</p>
+  <main id="top">
+    <header class="hero">
+      <div class="hero-content">
+        <p class="hero-tag" data-i18n="hero_tag">Offen für Einstiegsmöglichkeiten · Zürich, CH</p>
+        <h1 class="hero-name">
+          <span class="line" data-i18n="hero_line1">Lernender Entwickler digitales Business EFZ</span>
+          <span class="line accent" data-i18n="hero_line2">mit Fokus auf Daten, AI und Automatisierung</span>
+        </h1>
+        <p class="hero-subheadline" data-i18n="hero_subheadline">Aktuell in der Lehre bei der Zürcher Kantonalbank. Ich arbeite an digitalen Lösungen zwischen Business und Technik.</p>
+        <p class="hero-desc" data-i18n="hero_desc">Ich entwickle praxisnahe Projekte mit Python, SQL und Webtechnologien, nutze AI-Tools zur schnelleren Iteration und lege Wert auf saubere Umsetzung, Tests und klare Dokumentation.</p>
+        <div class="hero-ctas">
+          <a href="https://github.com/danizh910" target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-i18n="cta_github">Auf GitHub ansehen</a>
+          <a href="https://www.linkedin.com/in/daniel-luterbach-a1b34b308/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" data-i18n="cta_linkedin">LinkedIn öffnen</a>
+          <a href="#projects" class="btn btn-outline" data-i18n="cta_projects">Projekte ansehen</a>
         </div>
       </div>
-    </div>
-  </section>
 
-  <section id="how">
-    <div class="section-header reveal">
-      <span class="section-num">02</span>
-      <h2 class="section-title" data-i18n="services_title">How I Work</h2>
-      <div class="section-line"></div>
-    </div>
+      <aside class="hero-side" aria-label="Kurzprofil">
+        <div class="side-card">
+          <p class="side-kicker" data-i18n="stat_role_label">Aktueller Status</p>
+          <p class="side-value" data-i18n="stat_role_value">Lehre EFZ (in Ausbildung)</p>
+        </div>
+        <div class="side-card">
+          <p class="side-kicker" data-i18n="stat_company_label">Unternehmen</p>
+          <p class="side-value" data-i18n="stat_company_value">Zürcher Kantonalbank</p>
+        </div>
+        <div class="side-card">
+          <p class="side-kicker" data-i18n="stat_focus_label">Schwerpunkte</p>
+          <p class="side-value" data-i18n="stat_focus_value">Data, AI, Automatisierung</p>
+        </div>
+        <div class="side-card">
+          <p class="side-kicker" data-i18n="stat_location_label">Standort</p>
+          <p class="side-value" data-i18n="stat_location_value">Zürich</p>
+        </div>
+      </aside>
+    </header>
 
-    <div class="service-grid reveal">
-      <article class="service-card" style="grid-column: 1 / -1;">
-        <h3 data-i18n="service1_title">How I Work</h3>
-        <p data-i18n="service1_desc">I combine business understanding with technical execution and AI-driven development. Instead of only planning systems, I actively build, test and iterate solutions.</p>
-      </article>
-    </div>
-  </section>
+    <section id="about">
+      <div class="section-header reveal">
+        <span class="section-num">01</span>
+        <h2 class="section-title" data-i18n="about_title">Über mich</h2>
+        <div class="section-line"></div>
+      </div>
 
-  <section id="projects">
-    <div class="section-header reveal">
-      <span class="section-num">03</span>
-      <h2 class="section-title" data-i18n="projects_title">Projects</h2>
-      <div class="section-line"></div>
-    </div>
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <p data-i18n="about_p1">Ich bin Daniel Luterbach und lerne aktuell als <strong>Entwickler digitales Business EFZ</strong>. Mein Fokus liegt auf der Verbindung von Business-Verständnis und technischer Umsetzung.</p>
+          <p data-i18n="about_p2">Bei der <strong>Zürcher Kantonalbank</strong> arbeite ich in einem professionellen Umfeld und sammle praktische Erfahrung in digitalen Prozessen, Daten und Automatisierung.</p>
+          <p data-i18n="about_p3">Ich setze Projekte pragmatisch um: von Datenanalysen und API-Integrationen bis zu kleinen Webanwendungen und Bots. Ziel ist immer ein klarer, nutzbarer Mehrwert.</p>
+          <p data-i18n="about_p4">AI-Tools wie ChatGPT, Codex und Claude nutze ich aktiv für Recherche, Prototyping und Code-Reviews. Gleichzeitig prüfe ich Ergebnisse fachlich und technisch eigenständig.</p>
+        </div>
+      </div>
+    </section>
 
-    <div class="projects-grid reveal">
-      <a href="https://github.com/danizh910" target="_blank" class="project-card">
-        <div class="project-lang">Python · APIs</div>
-        <div class="project-name">Trading Bot</div>
-        <div class="project-desc" data-i18n="project1_desc">
-          <ul class="project-list">
-            <li>Python bot connected to exchange APIs.</li>
-            <li>Built for crypto market strategies.</li>
-            <li>Includes data analysis and automated execution.</li>
+    <section id="skills">
+      <div class="section-header reveal">
+        <span class="section-num">02</span>
+        <h2 class="section-title" data-i18n="skills_title">Skills</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="skills-columns reveal">
+        <article class="skill-card">
+          <h3 data-i18n="skill_group_1_title">Programmiersprachen & Daten</h3>
+          <ul class="pill-list">
+            <li data-i18n="skill_python">Python (ca. 7/10)</li>
+            <li data-i18n="skill_sql">SQL (ca. 7/10)</li>
+            <li data-i18n="skill_html">HTML (ca. 6/10)</li>
+            <li data-i18n="skill_css">CSS (ca. 6/10)</li>
+            <li data-i18n="skill_php">PHP (ca. 3/10)</li>
+            <li data-i18n="skill_java">Java (ca. 3/10)</li>
           </ul>
-        </div>
-        <div class="project-link" data-i18n="project_link">View repository</div>
-      </a>
+        </article>
 
-      <a href="https://github.com/danizh910" target="_blank" class="project-card">
-        <div class="project-lang">Python · Telegram</div>
-        <div class="project-name">Telegram Bot</div>
-        <div class="project-desc" data-i18n="project2_desc">
-          <ul class="project-list">
-            <li>Automation and notification system.</li>
-            <li>Tracks selected events and signals.</li>
-            <li>Sends fast alerts directly to Telegram.</li>
+        <article class="skill-card">
+          <h3 data-i18n="skill_group_2_title">Tools & Workflow</h3>
+          <ul class="pill-list">
+            <li data-i18n="skill_tool_1">GitHub</li>
+            <li data-i18n="skill_tool_2">APIs & Integrationen</li>
+            <li data-i18n="skill_tool_3">Docker (Grundlagen)</li>
+            <li data-i18n="skill_tool_4">Jira & Confluence</li>
+            <li data-i18n="skill_tool_5">Scrum / agile Zusammenarbeit</li>
+            <li data-i18n="skill_tool_6">AI-gestützte Entwicklung</li>
           </ul>
-        </div>
-        <div class="project-link" data-i18n="project_link">View repository</div>
-      </a>
+        </article>
 
-      <a href="https://github.com/danizh910" target="_blank" class="project-card">
-        <div class="project-lang">HTML · CSS · JS</div>
-        <div class="project-name">Consent Web App</div>
-        <div class="project-desc" data-i18n="project3_desc">
-          <ul class="project-list">
-            <li>Cybersecurity awareness web app.</li>
-            <li>Shows what browser data websites can access.</li>
-            <li>Built with plain HTML, CSS and JavaScript.</li>
+        <article class="skill-card">
+          <h3 data-i18n="skill_group_3_title">Themenfelder</h3>
+          <ul class="pill-list">
+            <li data-i18n="interest_1">Digitale Lösungen</li>
+            <li data-i18n="interest_2">Datenanalyse</li>
+            <li data-i18n="interest_3">AI im Arbeitsalltag</li>
+            <li data-i18n="interest_4">Finance & Banking</li>
+            <li data-i18n="interest_5">Crypto & Trading</li>
+            <li data-i18n="interest_6">Automatisierung</li>
           </ul>
-        </div>
-        <div class="project-link" data-i18n="project_link">View repository</div>
-      </a>
-
-      <a href="https://github.com/danizh910" target="_blank" class="project-card">
-        <div class="project-lang">Data Analysis</div>
-        <div class="project-name">HR Funnel Analysis</div>
-        <div class="project-desc" data-i18n="project4_desc">
-          <ul class="project-list">
-            <li>Analyzed funnel behavior across recruitment steps.</li>
-            <li>Found drop-off points and process friction.</li>
-            <li>Defined concrete optimization opportunities.</li>
-          </ul>
-        </div>
-        <div class="project-link" data-i18n="project_link">View repository</div>
-      </a>
-
-      <a href="https://github.com/danizh910" target="_blank" class="project-card">
-        <div class="project-lang">E-Commerce</div>
-        <div class="project-name">Shopify Store Setup</div>
-        <div class="project-desc" data-i18n="project5_desc">
-          <ul class="project-list">
-            <li>Built and tested a complete Shopify setup.</li>
-            <li>Configured products, checkout and structure.</li>
-            <li>Validated the store flow from user perspective.</li>
-          </ul>
-        </div>
-        <div class="project-link" data-i18n="project_link">View repository</div>
-      </a>
-    </div>
-    <a href="https://github.com/danizh910" target="_blank" class="btn btn-outline reveal" data-i18n="projects_all">All projects on GitHub →</a>
-  </section>
-
-
-  <section id="contact">
-    <div class="contact-box reveal">
-      <h2 class="contact-title" data-i18n="contact_title">Interested in working together or seeing more?</h2>
-      <p class="contact-sub" data-i18n="contact_sub">Let’s connect through GitHub or LinkedIn.</p>
-      <div class="contact-actions">
-        <a href="https://github.com/danizh910" target="_blank" class="btn btn-primary" data-i18n="contact_github">GitHub ansehen ↗</a>
-        <a href="https://www.linkedin.com/in/daniel-luterbach-a1b34b308/" target="_blank" class="btn btn-outline" data-i18n="contact_linkedin">LinkedIn öffnen ↗</a>
+        </article>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <section id="projects">
+      <div class="section-header reveal">
+        <span class="section-num">03</span>
+        <h2 class="section-title" data-i18n="projects_title">Projekte</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="project-grid reveal">
+        <article class="project-card">
+          <span class="project-label">Python · API</span>
+          <h3 class="project-name" data-i18n="project1_title">Trading-Bot Prototyp</h3>
+          <p class="project-desc" data-i18n="project1_desc">Prototyp für regelbasierte Orders und Marktdaten-Auswertung im Crypto-Umfeld.</p>
+          <ul class="project-list">
+            <li data-i18n="project1_li1">Ziel: Strategien strukturiert testen statt manuell ausfuehren.</li>
+            <li data-i18n="project1_li2">Tech: Python, Exchange-APIs, Datenanalyse.</li>
+            <li data-i18n="project1_li3">Mein Beitrag: Logik, API-Anbindung, Testing.</li>
+          </ul>
+          <a href="https://github.com/danizh910" target="_blank" rel="noopener noreferrer" class="project-link" data-i18n="project_link">Auf GitHub ansehen ↗</a>
+        </article>
+
+        <article class="project-card">
+          <span class="project-label">Python · Telegram</span>
+          <h3 class="project-name" data-i18n="project2_title">Telegram Notification Bot</h3>
+          <p class="project-desc" data-i18n="project2_desc">Bot für automatische Benachrichtigungen bei definierten Ereignissen.</p>
+          <ul class="project-list">
+            <li data-i18n="project2_li1">Ziel: Relevante Signale schneller erhalten und priorisieren.</li>
+            <li data-i18n="project2_li2">Tech: Python, Telegram API, einfache Datenlogik.</li>
+            <li data-i18n="project2_li3">Mein Beitrag: Architektur, Implementierung, Iterationen.</li>
+          </ul>
+          <a href="https://github.com/danizh910" target="_blank" rel="noopener noreferrer" class="project-link" data-i18n="project_link">Auf GitHub ansehen ↗</a>
+        </article>
+
+        <article class="project-card">
+          <span class="project-label">HTML · CSS · JS</span>
+          <h3 class="project-name" data-i18n="project3_title">Consent & Privacy Web App</h3>
+          <p class="project-desc" data-i18n="project3_desc">Kleine Web-App zur Veranschaulichung von Browserdaten und Datenschutz.</p>
+          <ul class="project-list">
+            <li data-i18n="project3_li1">Ziel: Technische Themen verstaendlich und visuell erklaeren.</li>
+            <li data-i18n="project3_li2">Tech: Vanilla HTML/CSS/JavaScript.</li>
+            <li data-i18n="project3_li3">Mein Beitrag: UX-Idee, Frontend-Umsetzung, inhaltliche Struktur.</li>
+          </ul>
+          <a href="https://github.com/danizh910" target="_blank" rel="noopener noreferrer" class="project-link" data-i18n="project_link">Auf GitHub ansehen ↗</a>
+        </article>
+
+        <article class="project-card">
+          <span class="project-label">SQL · Analytics</span>
+          <h3 class="project-name" data-i18n="project4_title">HR Funnel Analyse</h3>
+          <p class="project-desc" data-i18n="project4_desc">Analyse von Recruiting-Schritten zur Identifikation von Abbruchpunkten.</p>
+          <ul class="project-list">
+            <li data-i18n="project4_li1">Ziel: Prozessverbesserungen datenbasiert aufzeigen.</li>
+            <li data-i18n="project4_li2">Tech: SQL, strukturierte Auswertung, Reporting.</li>
+            <li data-i18n="project4_li3">Mein Beitrag: Datenaufbereitung, Analyse, Ergebnisdarstellung.</li>
+          </ul>
+          <a href="https://github.com/danizh910" target="_blank" rel="noopener noreferrer" class="project-link" data-i18n="project_link">Auf GitHub ansehen ↗</a>
+        </article>
+      </div>
+
+      <a href="https://github.com/danizh910" target="_blank" rel="noopener noreferrer" class="btn btn-outline reveal" data-i18n="projects_all">Alle Projekte auf GitHub ↗</a>
+    </section>
+
+    <section id="workflow">
+      <div class="section-header reveal">
+        <span class="section-num">04</span>
+        <h2 class="section-title" data-i18n="workflow_title">Arbeitsweise</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="workflow-grid reveal">
+        <article class="workflow-card">
+          <h3 data-i18n="workflow_1_title">1. Problem verstehen</h3>
+          <p data-i18n="workflow_1_desc">Ich starte mit dem fachlichen Ziel: Welche Wirkung soll eine Loesung haben, für wen und mit welchen Rahmenbedingungen?</p>
+        </article>
+
+        <article class="workflow-card">
+          <h3 data-i18n="workflow_2_title">2. Pragmatisch bauen</h3>
+          <p data-i18n="workflow_2_desc">Ich arbeite iterativ mit kleinen, testbaren Schritten statt mit grossen Big-Bang-Umsetzungen.</p>
+        </article>
+
+        <article class="workflow-card">
+          <h3 data-i18n="workflow_3_title">3. AI sinnvoll einsetzen</h3>
+          <p data-i18n="workflow_3_desc">AI-Tools nutze ich, um schneller Varianten zu prüfen und Codequalitaet zu verbessern, nicht als Ersatz für eigenes Verständnis.</p>
+        </article>
+
+        <article class="workflow-card">
+          <h3 data-i18n="workflow_4_title">4. Testen und dokumentieren</h3>
+          <p data-i18n="workflow_4_desc">Ich prüfe Ergebnisse, verbessere Details und halte wichtige Entscheidungen nachvollziehbar fest.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-header reveal">
+        <span class="section-num">05</span>
+        <h2 class="section-title" data-i18n="contact_section_title">Kontakt</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="contact-box reveal">
+        <h2 class="contact-title" data-i18n="contact_title">Interesse an einem Austausch?</h2>
+        <p class="contact-sub" data-i18n="contact_sub">Ich freue mich ueber Kontakt mit Recruitern, Hiring Managern oder Teams, die junge Talente mit Praxisfokus suchen.</p>
+        <div class="contact-actions">
+          <a href="https://github.com/danizh910" target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-i18n="contact_github">GitHub ansehen ↗</a>
+          <a href="https://www.linkedin.com/in/daniel-luterbach-a1b34b308/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" data-i18n="contact_linkedin">LinkedIn öffnen ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <footer>
-    <span data-i18n="footer_copy">© 2026 Daniel Luterbach — Zürich, Schweiz</span>
-    <span data-i18n="footer_note">Built with precision & coffee</span>
-    <a href="https://www.linkedin.com/in/daniel-luterbach-a1b34b308/" target="_blank" style="color:var(--accent); text-decoration:none; letter-spacing:0.1em;">linkedin.com/in/daniel-luterbach-a1b34b308 ↗</a>
+    <span data-i18n="footer_copy">© 2026 Daniel Luterbach · Zürich, Schweiz</span>
+    <span data-i18n="footer_note">In Ausbildung als Entwickler digitales Business EFZ</span>
+    <a href="https://www.linkedin.com/in/daniel-luterbach-a1b34b308/" target="_blank" rel="noopener noreferrer" style="color: var(--accent); text-decoration: none;" data-i18n="footer_link">linkedin.com/in/daniel-luterbach-a1b34b308 ↗</a>
   </footer>
 
   <script>
-    const cursor = document.getElementById('cursor');
-    const ring = document.getElementById('cursorRing');
-    let mx = 0, my = 0, rx = 0, ry = 0;
-
-    document.addEventListener('mousemove', (e) => {
-      mx = e.clientX;
-      my = e.clientY;
-      cursor.style.left = mx + 'px';
-      cursor.style.top = my + 'px';
-    });
-
-    function animateRing() {
-      rx += (mx - rx) * 0.12;
-      ry += (my - ry) * 0.12;
-      ring.style.left = rx + 'px';
-      ring.style.top = ry + 'px';
-      requestAnimationFrame(animateRing);
-    }
-    animateRing();
-
-    document.querySelectorAll('a, button').forEach((el) => {
-      el.addEventListener('mouseenter', () => {
-        cursor.style.transform = 'translate(-50%, -50%) scale(2)';
-        ring.style.width = '54px';
-        ring.style.height = '54px';
-      });
-      el.addEventListener('mouseleave', () => {
-        cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-        ring.style.width = '34px';
-        ring.style.height = '34px';
-      });
-    });
-
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('visible'), i * 70);
-          entry.target.querySelectorAll('.skill-fill').forEach((bar) => {
-            bar.style.width = bar.dataset.width + '%';
-          });
-        }
-      });
-    }, { threshold: 0.12 });
-
-    reveals.forEach((el) => observer.observe(el));
-
-    const sections = [...document.querySelectorAll('section')];
-    const navLinks = [...document.querySelectorAll('.nav-links a')];
-
-    const navObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          navLinks.forEach((link) => link.classList.remove('active'));
-          const active = navLinks.find((l) => l.getAttribute('href') === '#' + entry.target.id);
-          if (active) active.classList.add('active');
-        }
-      });
-    }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
-
-    sections.forEach((section) => navObserver.observe(section));
-
     const i18n = {
       de: {
+        page_title: 'Daniel Luterbach | Entwickler digitales Business EFZ in Ausbildung',
+        page_desc: 'Portfolio von Daniel Luterbach: Entwickler digitales Business EFZ in Ausbildung bei der Zürcher Kantonalbank mit Fokus auf digitale Lösungen, Daten, AI und Automatisierung.',
+        og_locale: 'de_CH',
+        mobile_menu: 'Menü',
         nav_about: 'Über mich',
-        nav_services: 'Skills',
+        nav_skills: 'Skills',
         nav_projects: 'Projekte',
-        nav_stack: 'How I Work',
+        nav_workflow: 'Arbeitsweise',
         nav_contact: 'Kontakt',
-        hero_tag: 'Offen für Opportunities · Zürich, CH',
-        hero_headline: '<span class="line">Business & Tech Engineer building data-driven systems</span><span class="line accent">in AI, finance and crypto.</span>',
-        hero_subheadline: 'Apprentice at Zürcher Kantonalbank | Python, APIs, Data Analysis | AI-driven development',
-        hero_desc: 'I build practical solutions combining business understanding, software and artificial intelligence.',
-        cta_github: 'GitHub ansehen',
-        cta_linkedin: 'LinkedIn Profil',
-        cta_projects: 'Meine Projekte',
-        terminal_line: 'building real systems, one iteration at a time',
-        stat_age_label: 'Alter',
-        stat_repos_label: 'Öffentliche Repos',
-        stat_focus_label: 'Fokus',
-        stat_focus_value: 'AI + Data Systems',
+        nav_linkedin: 'LinkedIn ↗',
+        hero_tag: 'Offen für Einstiegsmöglichkeiten · Zürich, CH',
+        hero_line1: 'Lernender Entwickler digitales Business EFZ',
+        hero_line2: 'mit Fokus auf Daten, AI und Automatisierung',
+        hero_subheadline: 'Aktuell in der Lehre bei der Zürcher Kantonalbank. Ich arbeite an digitalen Lösungen zwischen Business und Technik.',
+        hero_desc: 'Ich entwickle praxisnahe Projekte mit Python, SQL und Webtechnologien, nutze AI-Tools zur schnelleren Iteration und lege Wert auf saubere Umsetzung, Tests und klare Dokumentation.',
+        cta_github: 'Auf GitHub ansehen',
+        cta_linkedin: 'LinkedIn öffnen',
+        cta_projects: 'Projekte ansehen',
+        stat_role_label: 'Aktueller Status',
+        stat_role_value: 'Lehre EFZ (in Ausbildung)',
+        stat_company_label: 'Unternehmen',
+        stat_company_value: 'Zürcher Kantonalbank',
+        stat_focus_label: 'Schwerpunkte',
+        stat_focus_value: 'Data, AI, Automatisierung',
         stat_location_label: 'Standort',
+        stat_location_value: 'Zürich',
         about_title: 'Über mich',
-        about_p1: 'I work where business logic and technical execution meet. I build systems that solve real problems and deliver measurable outcomes.',
-        about_p2: 'I am currently an apprentice at <span>Zürcher Kantonalbank</span>, where I learn from real banking operations and apply that context to digital projects.',
-        about_p3: 'My focus is delivery: trading tools, automation bots, data analysis workflows, and practical web apps. I build and test, not just concept slides.',
-        about_p4: 'AI tools like <span>Codex and Claude</span> are part of my workflow to move faster from idea to implementation while keeping quality high.',
-        core_skills_title: 'Core Skills',
-        core_skills_list: 'Python (7/10) · SQL (7/10) · Data Analysis · APIs',
-        tools_title: 'Tools & Workflow',
-        tools_list: 'GitHub · AI / Prompt Engineering · Codex / Claude · Jira / Scrum',
-        domains_title: 'Domains',
-        domains_list: 'Finance & Banking · Crypto & Trading · Automation & Systems',
-        services_title: 'How I Work',
-        service1_title: 'How I Work',
-        service1_desc: 'I combine business understanding with technical execution and AI-driven development. Instead of only planning systems, I actively build, test and iterate solutions.',
-        projects_title: 'Projects',
-        project_link: 'Repository ansehen',
-        projects_all: 'Alle Projekte auf GitHub →',
-        contact_title: 'Interested in working together or seeing more?',
-        contact_sub: 'Let’s connect through GitHub or LinkedIn.',
+        about_p1: 'Ich bin Daniel Luterbach und lerne aktuell als <strong>Entwickler digitales Business EFZ</strong>. Mein Fokus liegt auf der Verbindung von Business-Verständnis und technischer Umsetzung.',
+        about_p2: 'Bei der <strong>Zürcher Kantonalbank</strong> arbeite ich in einem professionellen Umfeld und sammle praktische Erfahrung in digitalen Prozessen, Daten und Automatisierung.',
+        about_p3: 'Ich setze Projekte pragmatisch um: von Datenanalysen und API-Integrationen bis zu kleinen Webanwendungen und Bots. Ziel ist immer ein klarer, nutzbarer Mehrwert.',
+        about_p4: 'AI-Tools wie ChatGPT, Codex und Claude nutze ich aktiv für Recherche, Prototyping und Code-Reviews. Gleichzeitig prüfe ich Ergebnisse fachlich und technisch eigenständig.',
+        skills_title: 'Skills',
+        skill_group_1_title: 'Programmiersprachen & Daten',
+        skill_python: 'Python (ca. 7/10)',
+        skill_sql: 'SQL (ca. 7/10)',
+        skill_html: 'HTML (ca. 6/10)',
+        skill_css: 'CSS (ca. 6/10)',
+        skill_php: 'PHP (ca. 3/10)',
+        skill_java: 'Java (ca. 3/10)',
+        skill_group_2_title: 'Tools & Workflow',
+        skill_tool_1: 'GitHub',
+        skill_tool_2: 'APIs & Integrationen',
+        skill_tool_3: 'Docker (Grundlagen)',
+        skill_tool_4: 'Jira & Confluence',
+        skill_tool_5: 'Scrum / agile Zusammenarbeit',
+        skill_tool_6: 'AI-gestützte Entwicklung',
+        skill_group_3_title: 'Themenfelder',
+        interest_1: 'Digitale Lösungen',
+        interest_2: 'Datenanalyse',
+        interest_3: 'AI im Arbeitsalltag',
+        interest_4: 'Finance & Banking',
+        interest_5: 'Crypto & Trading',
+        interest_6: 'Automatisierung',
+        projects_title: 'Projekte',
+        project1_title: 'Trading-Bot Prototyp',
+        project1_desc: 'Prototyp für regelbasierte Orders und Marktdaten-Auswertung im Crypto-Umfeld.',
+        project1_li1: 'Ziel: Strategien strukturiert testen statt manuell ausfuehren.',
+        project1_li2: 'Tech: Python, Exchange-APIs, Datenanalyse.',
+        project1_li3: 'Mein Beitrag: Logik, API-Anbindung, Testing.',
+        project2_title: 'Telegram Notification Bot',
+        project2_desc: 'Bot für automatische Benachrichtigungen bei definierten Ereignissen.',
+        project2_li1: 'Ziel: Relevante Signale schneller erhalten und priorisieren.',
+        project2_li2: 'Tech: Python, Telegram API, einfache Datenlogik.',
+        project2_li3: 'Mein Beitrag: Architektur, Implementierung, Iterationen.',
+        project3_title: 'Consent & Privacy Web App',
+        project3_desc: 'Kleine Web-App zur Veranschaulichung von Browserdaten und Datenschutz.',
+        project3_li1: 'Ziel: Technische Themen verstaendlich und visuell erklaeren.',
+        project3_li2: 'Tech: Vanilla HTML/CSS/JavaScript.',
+        project3_li3: 'Mein Beitrag: UX-Idee, Frontend-Umsetzung, inhaltliche Struktur.',
+        project4_title: 'HR Funnel Analyse',
+        project4_desc: 'Analyse von Recruiting-Schritten zur Identifikation von Abbruchpunkten.',
+        project4_li1: 'Ziel: Prozessverbesserungen datenbasiert aufzeigen.',
+        project4_li2: 'Tech: SQL, strukturierte Auswertung, Reporting.',
+        project4_li3: 'Mein Beitrag: Datenaufbereitung, Analyse, Ergebnisdarstellung.',
+        project_link: 'Auf GitHub ansehen ↗',
+        projects_all: 'Alle Projekte auf GitHub ↗',
+        workflow_title: 'Arbeitsweise',
+        workflow_1_title: '1. Problem verstehen',
+        workflow_1_desc: 'Ich starte mit dem fachlichen Ziel: Welche Wirkung soll eine Loesung haben, für wen und mit welchen Rahmenbedingungen?',
+        workflow_2_title: '2. Pragmatisch bauen',
+        workflow_2_desc: 'Ich arbeite iterativ mit kleinen, testbaren Schritten statt mit grossen Big-Bang-Umsetzungen.',
+        workflow_3_title: '3. AI sinnvoll einsetzen',
+        workflow_3_desc: 'AI-Tools nutze ich, um schneller Varianten zu prüfen und Codequalitaet zu verbessern, nicht als Ersatz für eigenes Verständnis.',
+        workflow_4_title: '4. Testen und dokumentieren',
+        workflow_4_desc: 'Ich prüfe Ergebnisse, verbessere Details und halte wichtige Entscheidungen nachvollziehbar fest.',
+        contact_section_title: 'Kontakt',
+        contact_title: 'Interesse an einem Austausch?',
+        contact_sub: 'Ich freue mich ueber Kontakt mit Recruitern, Hiring Managern oder Teams, die junge Talente mit Praxisfokus suchen.',
         contact_github: 'GitHub ansehen ↗',
         contact_linkedin: 'LinkedIn öffnen ↗',
-        footer_copy: '© 2026 Daniel Luterbach — Zürich, Schweiz',
-        footer_note: 'Built with precision & coffee'
+        footer_copy: '© 2026 Daniel Luterbach · Zürich, Schweiz',
+        footer_note: 'In Ausbildung als Entwickler digitales Business EFZ',
+        footer_link: 'linkedin.com/in/daniel-luterbach-a1b34b308 ↗'
       },
       en: {
+        page_title: 'Daniel Luterbach | Apprentice Digital Business Developer EFZ',
+        page_desc: 'Portfolio of Daniel Luterbach: Apprentice Digital Business Developer EFZ at Zürcher Kantonalbank focused on digital solutions, data, AI and automation.',
+        og_locale: 'en_US',
+        mobile_menu: 'Menu',
         nav_about: 'About',
-        nav_services: 'Skills',
+        nav_skills: 'Skills',
         nav_projects: 'Projects',
-        nav_stack: 'How I Work',
+        nav_workflow: 'How I Work',
         nav_contact: 'Contact',
-        hero_tag: 'Open to opportunities · Zurich, CH',
-        hero_headline: '<span class="line">Business & Tech Engineer building data-driven systems</span><span class="line accent">in AI, finance and crypto.</span>',
-        hero_subheadline: 'Apprentice at Zürcher Kantonalbank | Python, APIs, Data Analysis | AI-driven development',
-        hero_desc: 'I build practical solutions combining business understanding, software and artificial intelligence.',
+        nav_linkedin: 'LinkedIn ↗',
+        hero_tag: 'Open to entry-level opportunities · Zurich, CH',
+        hero_line1: 'Apprentice Digital Business Developer EFZ',
+        hero_line2: 'focused on data, AI and automation',
+        hero_subheadline: 'Currently in apprenticeship at Zürcher Kantonalbank, working on practical digital solutions between business and technology.',
+        hero_desc: 'I build practical projects with Python, SQL and web technologies, use AI tools to iterate faster, and focus on clean implementation, testing and documentation.',
         cta_github: 'View GitHub',
-        cta_linkedin: 'LinkedIn Profile',
-        cta_projects: 'My Projects',
-        terminal_line: 'building real systems, one iteration at a time',
-        stat_age_label: 'Age',
-        stat_repos_label: 'Public Repos',
-        stat_focus_label: 'Focus',
-        stat_focus_value: 'AI + Data Systems',
+        cta_linkedin: 'Open LinkedIn',
+        cta_projects: 'View projects',
+        stat_role_label: 'Current status',
+        stat_role_value: 'EFZ apprenticeship (in training)',
+        stat_company_label: 'Company',
+        stat_company_value: 'Zürcher Kantonalbank',
+        stat_focus_label: 'Focus areas',
+        stat_focus_value: 'Data, AI, Automation',
         stat_location_label: 'Location',
+        stat_location_value: 'Zurich',
         about_title: 'About',
-        about_p1: 'I work where business logic and technical execution meet. I build systems that solve real problems and deliver measurable outcomes.',
-        about_p2: 'I am currently an apprentice at <span>Zürcher Kantonalbank</span>, where I learn from real banking operations and apply that context to digital projects.',
-        about_p3: 'My focus is delivery: trading tools, automation bots, data analysis workflows, and practical web apps. I build and test, not just concept slides.',
-        about_p4: 'AI tools like <span>Codex and Claude</span> are part of my workflow to move faster from idea to implementation while keeping quality high.',
-        core_skills_title: 'Core Skills',
-        core_skills_list: 'Python (7/10) · SQL (7/10) · Data Analysis · APIs',
-        tools_title: 'Tools & Workflow',
-        tools_list: 'GitHub · AI / Prompt Engineering · Codex / Claude · Jira / Scrum',
-        domains_title: 'Domains',
-        domains_list: 'Finance & Banking · Crypto & Trading · Automation & Systems',
-        services_title: 'How I Work',
-        service1_title: 'How I Work',
-        service1_desc: 'I combine business understanding with technical execution and AI-driven development. Instead of only planning systems, I actively build, test and iterate solutions.',
+        about_p1: 'I am Daniel Luterbach, currently training as an <strong>Apprentice Digital Business Developer EFZ</strong>. My profile sits at the intersection of business understanding and technical execution.',
+        about_p2: 'At <strong>Zürcher Kantonalbank</strong>, I work in a professional environment and gain practical experience in digital processes, data and automation.',
+        about_p3: 'I deliver projects pragmatically: from data analysis and API integrations to small web apps and bots. The goal is always a clear and usable outcome.',
+        about_p4: 'I actively use AI tools such as ChatGPT, Codex and Claude for research, prototyping and code review, while validating results independently.',
+        skills_title: 'Skills',
+        skill_group_1_title: 'Programming & Data',
+        skill_python: 'Python (~7/10)',
+        skill_sql: 'SQL (~7/10)',
+        skill_html: 'HTML (~6/10)',
+        skill_css: 'CSS (~6/10)',
+        skill_php: 'PHP (~3/10)',
+        skill_java: 'Java (~3/10)',
+        skill_group_2_title: 'Tools & Workflow',
+        skill_tool_1: 'GitHub',
+        skill_tool_2: 'APIs & integrations',
+        skill_tool_3: 'Docker (basics)',
+        skill_tool_4: 'Jira & Confluence',
+        skill_tool_5: 'Scrum / agile collaboration',
+        skill_tool_6: 'AI-assisted development',
+        skill_group_3_title: 'Domains of interest',
+        interest_1: 'Digital solutions',
+        interest_2: 'Data analysis',
+        interest_3: 'AI in day-to-day work',
+        interest_4: 'Finance & banking',
+        interest_5: 'Crypto & trading',
+        interest_6: 'Automation',
         projects_title: 'Projects',
-        project_link: 'View repository',
-        projects_all: 'All projects on GitHub →',
-        contact_title: 'Interested in working together or seeing more?',
-        contact_sub: 'Let’s connect through GitHub or LinkedIn.',
+        project1_title: 'Trading Bot Prototype',
+        project1_desc: 'Prototype for rule-based orders and market data analysis in a crypto context.',
+        project1_li1: 'Goal: test strategies in a structured way instead of manual execution.',
+        project1_li2: 'Tech: Python, exchange APIs, data analysis.',
+        project1_li3: 'My role: logic, API integration, testing.',
+        project2_title: 'Telegram Notification Bot',
+        project2_desc: 'Bot for automated notifications based on defined events.',
+        project2_li1: 'Goal: receive and prioritize relevant signals faster.',
+        project2_li2: 'Tech: Python, Telegram API, lightweight data logic.',
+        project2_li3: 'My role: architecture, implementation, iteration.',
+        project3_title: 'Consent & Privacy Web App',
+        project3_desc: 'Small web app that illustrates browser data and privacy topics.',
+        project3_li1: 'Goal: explain technical topics in a clear and visual way.',
+        project3_li2: 'Tech: vanilla HTML/CSS/JavaScript.',
+        project3_li3: 'My role: UX concept, frontend implementation, content structure.',
+        project4_title: 'HR Funnel Analysis',
+        project4_desc: 'Analysis of recruiting funnel steps to identify drop-off points.',
+        project4_li1: 'Goal: highlight data-driven process improvements.',
+        project4_li2: 'Tech: SQL, structured analysis, reporting.',
+        project4_li3: 'My role: data prep, analysis, result communication.',
+        project_link: 'View on GitHub ↗',
+        projects_all: 'See all projects on GitHub ↗',
+        workflow_title: 'How I Work',
+        workflow_1_title: '1. Understand the problem',
+        workflow_1_desc: 'I start with the business goal: what outcome matters, for whom, and under which constraints.',
+        workflow_2_title: '2. Build pragmatically',
+        workflow_2_desc: 'I work iteratively with small, testable steps instead of big-bang delivery.',
+        workflow_3_title: '3. Use AI with intent',
+        workflow_3_desc: 'I use AI tools to evaluate options faster and improve code quality, not as a replacement for understanding.',
+        workflow_4_title: '4. Test and document',
+        workflow_4_desc: 'I validate outcomes, improve details, and document key decisions clearly.',
+        contact_section_title: 'Contact',
+        contact_title: 'Interested in connecting?',
+        contact_sub: 'I am happy to connect with recruiters, hiring managers and teams looking for a junior profile with practical delivery focus.',
         contact_github: 'View GitHub ↗',
         contact_linkedin: 'Open LinkedIn ↗',
-        footer_copy: '© 2026 Daniel Luterbach — Zurich, Switzerland',
-        footer_note: 'Built with precision & coffee'
+        footer_copy: '© 2026 Daniel Luterbach · Zurich, Switzerland',
+        footer_note: 'Currently training as an Apprentice Digital Business Developer EFZ',
+        footer_link: 'linkedin.com/in/daniel-luterbach-a1b34b308 ↗'
       }
     };
 
-    const langToggle = document.getElementById('langToggle');
-    let currentLang = 'de';
+    const setMeta = (lang) => {
+      document.title = i18n[lang].page_title;
+      const desc = document.querySelector('meta[name="description"]');
+      if (desc) desc.setAttribute('content', i18n[lang].page_desc);
+      const ogLocale = document.querySelector('meta[property="og:locale"]');
+      if (ogLocale) ogLocale.setAttribute('content', i18n[lang].og_locale);
+    };
 
-    function applyLanguage(lang) {
-      currentLang = lang;
+    const applyLanguage = (lang) => {
       document.documentElement.lang = lang;
-      langToggle.textContent = lang === 'de' ? 'EN' : 'DE';
-      document.querySelectorAll('[data-i18n]').forEach((node) => {
-        const key = node.dataset.i18n;
-        const text = i18n[lang][key];
-        if (typeof text === 'string') node.innerHTML = text;
-      });
-      localStorage.setItem('siteLang', lang);
-    }
+      const toggle = document.getElementById('langToggle');
+      toggle.textContent = lang === 'de' ? 'EN' : 'DE';
+      toggle.setAttribute('aria-label', lang === 'de' ? 'Switch to English' : 'Auf Deutsch umschalten');
 
-    langToggle.addEventListener('click', () => {
-      applyLanguage(currentLang === 'de' ? 'en' : 'de');
-    });
+      document.querySelectorAll('[data-i18n]').forEach((node) => {
+        const key = node.getAttribute('data-i18n');
+        const value = i18n[lang][key];
+        if (!value) return;
+        if (value.includes('<strong>')) {
+          node.innerHTML = value;
+        } else {
+          node.textContent = value;
+        }
+      });
+
+      localStorage.setItem('siteLang', lang);
+      setMeta(lang);
+    };
 
     const savedLang = localStorage.getItem('siteLang');
-    if (savedLang && i18n[savedLang]) applyLanguage(savedLang);
+    const initialLang = savedLang && i18n[savedLang] ? savedLang : 'de';
+    applyLanguage(initialLang);
+
+    document.getElementById('langToggle').addEventListener('click', () => {
+      const nextLang = document.documentElement.lang === 'de' ? 'en' : 'de';
+      applyLanguage(nextLang);
+    });
+
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const nav = document.getElementById('mainNav');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      const expanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
+      mobileMenuBtn.setAttribute('aria-expanded', String(!expanded));
+      nav.classList.toggle('open');
+    });
+
+    nav.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('open');
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    const sections = [...document.querySelectorAll('main section')];
+    const navLinks = [...document.querySelectorAll('.nav-links a')];
+
+    const activeObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        navLinks.forEach((l) => l.classList.remove('active'));
+        const current = navLinks.find((l) => l.getAttribute('href') === `#${entry.target.id}`);
+        if (current) current.classList.add('active');
+      });
+    }, { rootMargin: '-45% 0px -45% 0px', threshold: 0.05 });
+
+    sections.forEach((section) => activeObserver.observe(section));
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!prefersReduced) {
+      const reveals = document.querySelectorAll('.reveal');
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08 });
+      reveals.forEach((el) => revealObserver.observe(el));
+    } else {
+      document.querySelectorAll('.reveal').forEach((el) => el.classList.add('visible'));
+    }
   </script>
 </body>
 </html>
