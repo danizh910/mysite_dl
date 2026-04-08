@@ -10,7 +10,22 @@
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="de_CH" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1' y1='0' y2='1'%3E%3Cstop offset='0%25' stop-color='%2300e5ff'/%3E%3Cstop offset='100%25' stop-color='%237c3aed'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='22' fill='%230a0a0f'/%3E%3Ctext x='50' y='61' text-anchor='middle' font-family='Arial, sans-serif' font-size='43' font-weight='700' fill='url(%23g)'%3EDL%3C/text%3E%3C/svg%3E" />
+  <meta name="robots" content="index, follow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Daniel Luterbach",
+    "jobTitle": "Entwickler digitales Business EFZ (Lernender)",
+    "worksFor": { "@type": "Organization", "name": "Zürcher Kantonalbank" },
+    "address": { "@type": "PostalAddress", "addressLocality": "Zürich", "addressCountry": "CH" },
+    "sameAs": ["https://github.com/danizh910", "https://www.linkedin.com/in/daniel-luterbach-a1b34b308/"],
+    "knowsAbout": ["Python", "SQL", "Data Analysis", "Automation", "Artificial Intelligence", "Finance Technology"]
+  }
+  </script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -546,6 +561,339 @@
       }
       .reveal { opacity: 1; transform: none; }
     }
+
+    /* === SKILL BARS === */
+    .skill-bar-list { display: grid; gap: 14px; }
+    .skill-bar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 7px; }
+    .skill-bar-name { font-size: 0.74rem; color: var(--text); }
+    .skill-bar-level { font-size: 0.63rem; color: var(--muted); letter-spacing: 0.05em; }
+    .skill-bar-track { height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; }
+    .skill-bar-fill {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      border-radius: 2px;
+      transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .skill-bar-fill.animated { width: var(--bar-width); }
+
+    /* === SCROLL-TO-TOP === */
+    .scroll-top {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      width: 40px;
+      height: 40px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--accent);
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.3s, transform 0.3s, border-color 0.2s;
+      z-index: 200;
+    }
+    .scroll-top.visible { opacity: 1; transform: none; }
+    .scroll-top:hover { border-color: var(--accent); }
+
+    /* === TOAST === */
+    .toast {
+      position: fixed;
+      bottom: 80px;
+      right: 28px;
+      background: var(--card);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: 10px 16px;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.3s, transform 0.3s;
+      pointer-events: none;
+      z-index: 300;
+    }
+    .toast.show { opacity: 1; transform: none; }
+
+    /* === PROJECT CARD HOVER GLOW === */
+    .project-card { transition: border-color 0.25s, box-shadow 0.25s; }
+    .project-card:hover {
+      border-color: rgba(0,229,255,0.35);
+      box-shadow: 0 0 24px rgba(0,229,255,0.07);
+    }
+
+    /* === ABOUT HIGHLIGHTS === */
+    .about-highlights {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 20px;
+      display: grid;
+      gap: 16px;
+      align-content: start;
+    }
+    .about-highlights h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.82rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 2px;
+    }
+    .highlight-item { display: flex; flex-direction: column; gap: 3px; border-bottom: 1px solid var(--border); padding-bottom: 12px; }
+    .highlight-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .highlight-label { font-size: 0.6rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+    .highlight-value { font-family: 'Syne', sans-serif; font-size: 0.88rem; font-weight: 600; color: var(--text); }
+    .highlight-accent { color: var(--accent); }
+
+    /* === CONTACT LAYOUT === */
+    .contact-box { text-align: left; }
+    .contact-box .contact-title,
+    .contact-box .contact-sub { text-align: center; }
+    .contact-box .contact-sub { margin-bottom: 32px; }
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    /* === CONTACT INFO PANEL === */
+    .contact-info {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 24px;
+      display: grid;
+      gap: 0;
+    }
+    .contact-info-item {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .contact-info-item:first-child { padding-top: 0; }
+    .contact-info-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .contact-info-label {
+      font-size: 0.6rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .contact-info-value {
+      font-size: 0.78rem;
+      color: var(--text);
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+    }
+    .contact-info-link {
+      font-size: 0.74rem;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .contact-info-link:hover { text-decoration: underline; }
+    .contact-response {
+      margin-top: 18px;
+      font-size: 0.68rem;
+      color: var(--muted);
+      line-height: 1.7;
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+    }
+
+    /* === EMAIL COPY === */
+    .email-copy {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      border: none;
+      color: var(--accent);
+      font-family: inherit;
+      font-size: 0.74rem;
+      padding: 0;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .email-copy:hover { opacity: 0.75; }
+    .email-copy-icon { font-size: 0.85rem; opacity: 0.7; }
+
+    /* === CONTACT FORM === */
+    .contact-form {
+      display: grid;
+      gap: 0;
+    }
+
+    /* Floating label fields */
+    .form-field {
+      position: relative;
+      margin-bottom: 14px;
+    }
+    .form-field label {
+      position: absolute;
+      left: 14px;
+      top: 13px;
+      font-size: 0.74rem;
+      color: var(--muted);
+      pointer-events: none;
+      transition: transform 0.18s ease, font-size 0.18s ease, color 0.18s ease;
+      background: var(--surface);
+      padding: 0 3px;
+      transform-origin: left top;
+    }
+    .form-field .form-input:not(:placeholder-shown) ~ label,
+    .form-field .form-input:focus ~ label,
+    .form-field .form-input.has-value ~ label {
+      transform: translateY(-21px) scale(0.82);
+      color: var(--accent);
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .form-input {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.76rem;
+      padding: 13px 14px 11px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+      appearance: none;
+    }
+    .form-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(0,229,255,0.08);
+    }
+    .form-input::placeholder { color: transparent; }
+    .form-input.input-error { border-color: #f87171; }
+    .form-textarea {
+      min-height: 120px;
+      resize: vertical;
+      line-height: 1.6;
+    }
+    .form-select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23a2a6be' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+      cursor: pointer;
+    }
+    .form-select option { background: var(--card); color: var(--text); }
+
+    /* Field error message */
+    .field-error {
+      display: block;
+      font-size: 0.63rem;
+      color: #f87171;
+      margin-top: 4px;
+      min-height: 14px;
+      letter-spacing: 0.02em;
+    }
+
+    /* Char counter */
+    .char-counter-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 18px;
+      margin-top: 4px;
+    }
+    .char-counter {
+      font-size: 0.6rem;
+      color: var(--muted);
+      pointer-events: none;
+      flex-shrink: 0;
+      margin-left: auto;
+    }
+    .char-counter.warn { color: #fbbf24; }
+    .char-counter.over { color: #f87171; }
+
+    /* Submit button states */
+    .form-submit { width: 100%; justify-content: center; margin-top: 4px; position: relative; min-height: 44px; }
+    .submit-spinner {
+      display: none;
+      width: 16px; height: 16px;
+      border: 2px solid currentColor;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .form-submit.loading .submit-text { display: none; }
+    .form-submit.loading .submit-spinner { display: inline-block; }
+
+    /* Form status */
+    .form-status {
+      margin-top: 12px;
+      font-size: 0.74rem;
+      text-align: center;
+      min-height: 20px;
+    }
+    .form-status.success { color: var(--accent); }
+    .form-status.error { color: #f87171; }
+
+    /* Success overlay */
+    .form-success-overlay {
+      display: none;
+      padding: 32px 20px;
+      text-align: center;
+      border: 1px solid rgba(0,229,255,0.25);
+      background: rgba(0,229,255,0.03);
+    }
+    .form-success-overlay.show { display: block; }
+    .form-success-icon { font-size: 2rem; margin-bottom: 12px; }
+    .form-success-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .form-success-text { font-size: 0.76rem; color: var(--muted); }
+    .form-note { font-size: 0.6rem; color: var(--muted); letter-spacing: 0.04em; text-align: center; margin-top: 10px; }
+
+    @media (max-width: 820px) {
+      .contact-layout { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    /* === TYPING CURSOR === */
+    .typed-cursor {
+      display: inline-block;
+      width: 2px;
+      height: 0.85em;
+      background: var(--accent);
+      margin-left: 2px;
+      vertical-align: middle;
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+    .hero-typed { font-size: 0.8rem; color: var(--muted); margin-bottom: 20px; letter-spacing: 0.04em; }
+    .hero-typed .typed-word { color: var(--accent); }
+
+    /* === STAGGER DELAYS === */
+    .project-grid .project-card:nth-child(2) { transition-delay: 80ms; }
+    .project-grid .project-card:nth-child(3) { transition-delay: 160ms; }
+    .project-grid .project-card:nth-child(4) { transition-delay: 240ms; }
+    .workflow-grid .workflow-card:nth-child(2) { transition-delay: 80ms; }
+    .workflow-grid .workflow-card:nth-child(3) { transition-delay: 160ms; }
+    .workflow-grid .workflow-card:nth-child(4) { transition-delay: 240ms; }
+
+    @media (max-width: 820px) {
+      .form-row { grid-template-columns: 1fr; }
+      .scroll-top { bottom: 18px; right: 18px; }
+      .toast { bottom: 68px; right: 18px; }
+    }
   </style>
 </head>
 <body>
@@ -582,6 +930,7 @@
         </h1>
         <p class="hero-subheadline" data-i18n="hero_subheadline">Aktuell in der Lehre bei der Zürcher Kantonalbank. Ich arbeite an digitalen Lösungen zwischen Business und Technik.</p>
         <p class="hero-desc" data-i18n="hero_desc">Ich entwickle praxisnahe Projekte mit Python, SQL und Webtechnologien, nutze AI-Tools zur schnelleren Iteration und lege Wert auf saubere Umsetzung, Tests und klare Dokumentation.</p>
+        <p class="hero-typed" aria-hidden="true">→ <span class="typed-word" id="typed-word"></span><span class="typed-cursor"></span></p>
         <div class="hero-ctas">
           <a href="https://github.com/danizh910" target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-i18n="cta_github">Auf GitHub ansehen</a>
           <a href="https://www.linkedin.com/in/daniel-luterbach-a1b34b308/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" data-i18n="cta_linkedin">LinkedIn öffnen</a>
@@ -606,6 +955,10 @@
           <p class="side-kicker" data-i18n="stat_location_label">Standort</p>
           <p class="side-value" data-i18n="stat_location_value">Zürich</p>
         </div>
+        <div class="side-card">
+          <p class="side-kicker">GitHub</p>
+          <p class="side-value" id="gh-repos">danizh910</p>
+        </div>
       </aside>
     </header>
 
@@ -623,6 +976,29 @@
           <p data-i18n="about_p3">Ich setze Projekte pragmatisch um: von Datenanalysen und API-Integrationen bis zu kleinen Webanwendungen und Bots. Ziel ist immer ein klarer, nutzbarer Mehrwert.</p>
           <p data-i18n="about_p4">AI-Tools wie ChatGPT, Codex und Claude nutze ich aktiv für Recherche, Prototyping und Code-Reviews. Gleichzeitig prüfe ich Ergebnisse fachlich und technisch eigenständig.</p>
         </div>
+        <div class="about-highlights reveal">
+          <h3 data-i18n="about_highlights_title">Auf einen Blick</h3>
+          <div class="highlight-item">
+            <span class="highlight-label" data-i18n="hl_status_label">Status</span>
+            <span class="highlight-value" data-i18n="hl_status_value">Lehrjahr <span class="highlight-accent">3 / 3</span> · EFZ</span>
+          </div>
+          <div class="highlight-item">
+            <span class="highlight-label" data-i18n="hl_company_label">Arbeitgeber</span>
+            <span class="highlight-value">Zürcher Kantonalbank</span>
+          </div>
+          <div class="highlight-item">
+            <span class="highlight-label" data-i18n="hl_stack_label">Haupttechnologien</span>
+            <span class="highlight-value">Python · SQL · JS</span>
+          </div>
+          <div class="highlight-item">
+            <span class="highlight-label" data-i18n="hl_projects_label">Abgeschlossene Projekte</span>
+            <span class="highlight-value highlight-accent">4+</span>
+          </div>
+          <div class="highlight-item">
+            <span class="highlight-label" data-i18n="hl_avail_label">Verfügbarkeit</span>
+            <span class="highlight-value" data-i18n="hl_avail_value">Ab Sommer 2026</span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -636,14 +1012,43 @@
       <div class="skills-columns reveal">
         <article class="skill-card">
           <h3 data-i18n="skill_group_1_title">Programmiersprachen & Daten</h3>
-          <ul class="pill-list">
-            <li data-i18n="skill_python">Python (ca. 7/10)</li>
-            <li data-i18n="skill_sql">SQL (ca. 7/10)</li>
-            <li data-i18n="skill_html">HTML (ca. 6/10)</li>
-            <li data-i18n="skill_css">CSS (ca. 6/10)</li>
-            <li data-i18n="skill_php">PHP (ca. 3/10)</li>
-            <li data-i18n="skill_java">Java (ca. 3/10)</li>
-          </ul>
+          <div class="skill-bar-list">
+            <div class="skill-bar-item">
+              <div class="skill-bar-header">
+                <span class="skill-bar-name">Python</span>
+                <span class="skill-bar-level" data-i18n="skill_level_advanced">Fortgeschritten</span>
+              </div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" style="--bar-width:70%"></div></div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-header">
+                <span class="skill-bar-name">SQL</span>
+                <span class="skill-bar-level" data-i18n="skill_level_advanced">Fortgeschritten</span>
+              </div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" style="--bar-width:70%"></div></div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-header">
+                <span class="skill-bar-name">HTML / CSS</span>
+                <span class="skill-bar-level" data-i18n="skill_level_good">Solide</span>
+              </div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" style="--bar-width:60%"></div></div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-header">
+                <span class="skill-bar-name">JavaScript</span>
+                <span class="skill-bar-level" data-i18n="skill_level_good">Solide</span>
+              </div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" style="--bar-width:55%"></div></div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-header">
+                <span class="skill-bar-name">PHP / Java</span>
+                <span class="skill-bar-level" data-i18n="skill_level_basic">Grundkenntnisse</span>
+              </div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" style="--bar-width:30%"></div></div>
+            </div>
+          </div>
         </article>
 
         <article class="skill-card">
@@ -679,8 +1084,8 @@
         <div class="section-line"></div>
       </div>
 
-      <div class="project-grid reveal">
-        <article class="project-card">
+      <div class="project-grid">
+        <article class="project-card reveal">
           <span class="project-label">Python · API</span>
           <h3 class="project-name" data-i18n="project1_title">Trading-Bot Prototyp</h3>
           <p class="project-desc" data-i18n="project1_desc">Prototyp für regelbasierte Orders und Marktdaten-Auswertung im Crypto-Umfeld.</p>
@@ -692,7 +1097,7 @@
           <a href="https://github.com/danizh910" target="_blank" rel="noopener noreferrer" class="project-link" data-i18n="project_link">Auf GitHub ansehen ↗</a>
         </article>
 
-        <article class="project-card">
+        <article class="project-card reveal">
           <span class="project-label">Python · Telegram</span>
           <h3 class="project-name" data-i18n="project2_title">Telegram Notification Bot</h3>
           <p class="project-desc" data-i18n="project2_desc">Bot für automatische Benachrichtigungen bei definierten Ereignissen.</p>
@@ -704,7 +1109,7 @@
           <a href="https://github.com/danizh910" target="_blank" rel="noopener noreferrer" class="project-link" data-i18n="project_link">Auf GitHub ansehen ↗</a>
         </article>
 
-        <article class="project-card">
+        <article class="project-card reveal">
           <span class="project-label">HTML · CSS · JS</span>
           <h3 class="project-name" data-i18n="project3_title">Consent & Privacy Web App</h3>
           <p class="project-desc" data-i18n="project3_desc">Kleine Web-App zur Veranschaulichung von Browserdaten und Datenschutz.</p>
@@ -716,7 +1121,7 @@
           <a href="https://github.com/danizh910" target="_blank" rel="noopener noreferrer" class="project-link" data-i18n="project_link">Auf GitHub ansehen ↗</a>
         </article>
 
-        <article class="project-card">
+        <article class="project-card reveal">
           <span class="project-label">SQL · Analytics</span>
           <h3 class="project-name" data-i18n="project4_title">HR Funnel Analyse</h3>
           <p class="project-desc" data-i18n="project4_desc">Analyse von Recruiting-Schritten zur Identifikation von Abbruchpunkten.</p>
@@ -739,23 +1144,23 @@
         <div class="section-line"></div>
       </div>
 
-      <div class="workflow-grid reveal">
-        <article class="workflow-card">
+      <div class="workflow-grid">
+        <article class="workflow-card reveal">
           <h3 data-i18n="workflow_1_title">1. Problem verstehen</h3>
-          <p data-i18n="workflow_1_desc">Ich starte mit dem fachlichen Ziel: Welche Wirkung soll eine Loesung haben, für wen und mit welchen Rahmenbedingungen?</p>
+          <p data-i18n="workflow_1_desc">Ich starte mit dem fachlichen Ziel: Welche Wirkung soll eine Lösung haben, für wen und mit welchen Rahmenbedingungen?</p>
         </article>
 
-        <article class="workflow-card">
+        <article class="workflow-card reveal">
           <h3 data-i18n="workflow_2_title">2. Pragmatisch bauen</h3>
-          <p data-i18n="workflow_2_desc">Ich arbeite iterativ mit kleinen, testbaren Schritten statt mit grossen Big-Bang-Umsetzungen.</p>
+          <p data-i18n="workflow_2_desc">Ich arbeite iterativ mit kleinen, testbaren Schritten statt mit großen Big-Bang-Umsetzungen.</p>
         </article>
 
-        <article class="workflow-card">
+        <article class="workflow-card reveal">
           <h3 data-i18n="workflow_3_title">3. AI sinnvoll einsetzen</h3>
-          <p data-i18n="workflow_3_desc">AI-Tools nutze ich, um schneller Varianten zu prüfen und Codequalitaet zu verbessern, nicht als Ersatz für eigenes Verständnis.</p>
+          <p data-i18n="workflow_3_desc">AI-Tools nutze ich, um schneller Varianten zu prüfen und die Codequalität zu verbessern – nicht als Ersatz für eigenes Verständnis.</p>
         </article>
 
-        <article class="workflow-card">
+        <article class="workflow-card reveal">
           <h3 data-i18n="workflow_4_title">4. Testen und dokumentieren</h3>
           <p data-i18n="workflow_4_desc">Ich prüfe Ergebnisse, verbessere Details und halte wichtige Entscheidungen nachvollziehbar fest.</p>
         </article>
@@ -771,10 +1176,93 @@
 
       <div class="contact-box reveal">
         <h2 class="contact-title" data-i18n="contact_title">Interesse an einem Austausch?</h2>
-        <p class="contact-sub" data-i18n="contact_sub">Ich freue mich ueber Kontakt mit Recruitern, Hiring Managern oder Teams, die junge Talente mit Praxisfokus suchen.</p>
-        <div class="contact-actions">
-          <a href="https://github.com/danizh910" target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-i18n="contact_github">GitHub ansehen ↗</a>
-          <a href="https://www.linkedin.com/in/daniel-luterbach-a1b34b308/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" data-i18n="contact_linkedin">LinkedIn öffnen ↗</a>
+        <p class="contact-sub" data-i18n="contact_sub">Ich freue mich über Kontakt mit Recruitern, Hiring Managern oder Teams, die junge Talente mit Praxisfokus suchen.</p>
+
+        <div class="contact-layout">
+
+          <!-- Info-Panel links -->
+          <div class="contact-info">
+            <div class="contact-info-item">
+              <span class="contact-info-label" data-i18n="ci_email_label">E-Mail</span>
+              <button class="email-copy" id="copyEmail" data-email="daniel.luterbach@example.com" aria-label="E-Mail kopieren">
+                <span>daniel.luterbach@example.com</span>
+                <span class="email-copy-icon" aria-hidden="true">⎘</span>
+              </button>
+            </div>
+            <div class="contact-info-item">
+              <span class="contact-info-label">LinkedIn</span>
+              <a class="contact-info-link" href="https://www.linkedin.com/in/daniel-luterbach-a1b34b308/" target="_blank" rel="noopener noreferrer">linkedin.com/in/daniel-luterbach ↗</a>
+            </div>
+            <div class="contact-info-item">
+              <span class="contact-info-label">GitHub</span>
+              <a class="contact-info-link" href="https://github.com/danizh910" target="_blank" rel="noopener noreferrer">github.com/danizh910 ↗</a>
+            </div>
+            <div class="contact-info-item">
+              <span class="contact-info-label" data-i18n="ci_location_label">Standort</span>
+              <span class="contact-info-value">Zürich, CH</span>
+            </div>
+            <div class="contact-info-item">
+              <span class="contact-info-label" data-i18n="ci_avail_label">Verfügbar ab</span>
+              <span class="contact-info-value" data-i18n="ci_avail_value">Sommer 2026</span>
+            </div>
+            <p class="contact-response" data-i18n="ci_response">Ich antworte in der Regel innerhalb von 24–48 Stunden.</p>
+          </div>
+
+          <!-- Formular rechts -->
+          <div class="form-wrap">
+            <!-- Formspree: action-URL mit eigener ID ersetzen → formspree.io -->
+            <form id="contactForm" class="contact-form" action="https://formspree.io/f/DEINE_FORM_ID" method="POST" novalidate>
+
+              <div class="form-row">
+                <div class="form-field">
+                  <input type="text" id="f-name" name="name" class="form-input" placeholder=" " required autocomplete="name" />
+                  <label for="f-name" data-i18n="form_name_ph">Name</label>
+                  <span class="field-error" id="err-name"></span>
+                </div>
+                <div class="form-field">
+                  <input type="email" id="f-email" name="email" class="form-input" placeholder=" " required autocomplete="email" />
+                  <label for="f-email" data-i18n="form_email_ph">E-Mail</label>
+                  <span class="field-error" id="err-email"></span>
+                </div>
+              </div>
+
+              <div class="form-field">
+                <select id="f-subject" name="subject" class="form-input form-select">
+                  <option value="" disabled selected data-i18n="form_subject_default">Betreff wählen (optional)</option>
+                  <option value="job" data-i18n="form_subject_job">Jobmöglichkeit / Praktikum</option>
+                  <option value="collab" data-i18n="form_subject_collab">Zusammenarbeit / Projekt</option>
+                  <option value="question" data-i18n="form_subject_question">Allgemeine Frage</option>
+                  <option value="other" data-i18n="form_subject_other">Sonstiges</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <textarea id="f-msg" name="message" class="form-input form-textarea" placeholder=" " required maxlength="1000"></textarea>
+                <label for="f-msg" data-i18n="form_msg_ph">Nachricht</label>
+                <div class="char-counter-row">
+                  <span class="field-error" id="err-msg"></span>
+                  <span class="char-counter"><span id="char-count">0</span>/1000</span>
+                </div>
+              </div>
+
+              <!-- Honeypot Anti-Spam -->
+              <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+
+              <button type="submit" id="submitBtn" class="btn btn-primary form-submit">
+                <span class="submit-text" data-i18n="form_send">Nachricht senden</span>
+                <span class="submit-spinner" aria-hidden="true"></span>
+              </button>
+
+              <p class="form-note" data-i18n="form_note">Formular via Formspree · eigene ID unter formspree.io eintragen</p>
+            </form>
+
+            <div class="form-success-overlay" id="formSuccess">
+              <div class="form-success-icon" aria-hidden="true">✓</div>
+              <p class="form-success-title" data-i18n="form_success_title">Nachricht gesendet!</p>
+              <p class="form-success-text" data-i18n="form_success_text">Danke – ich melde mich in der Regel innerhalb von 24–48 Stunden.</p>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
@@ -785,6 +1273,9 @@
     <span data-i18n="footer_note">In Ausbildung als Entwickler digitales Business EFZ</span>
     <a href="https://www.linkedin.com/in/daniel-luterbach-a1b34b308/" target="_blank" rel="noopener noreferrer" style="color: var(--accent); text-decoration: none;" data-i18n="footer_link">linkedin.com/in/daniel-luterbach-a1b34b308 ↗</a>
   </footer>
+
+  <button id="scrollTop" class="scroll-top" aria-label="Nach oben scrollen">↑</button>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
   <script>
     const i18n = {
@@ -798,6 +1289,17 @@
         nav_projects: 'Projekte',
         nav_workflow: 'Arbeitsweise',
         nav_contact: 'Kontakt',
+        about_highlights_title: 'Auf einen Blick',
+        hl_status_label: 'Status',
+        hl_status_value: 'Lehrjahr 3 / 3 · EFZ',
+        hl_company_label: 'Arbeitgeber',
+        hl_stack_label: 'Haupttechnologien',
+        hl_projects_label: 'Abgeschlossene Projekte',
+        hl_avail_label: 'Verfügbarkeit',
+        hl_avail_value: 'Ab Sommer 2026',
+        skill_level_advanced: 'Fortgeschritten',
+        skill_level_good: 'Solide',
+        skill_level_basic: 'Grundkenntnisse',
         nav_linkedin: 'LinkedIn ↗',
         hero_tag: 'Offen für Einstiegsmöglichkeiten · Zürich, CH',
         hero_line1: 'Lernender Entwickler digitales Business EFZ',
@@ -845,40 +1347,62 @@
         projects_title: 'Projekte',
         project1_title: 'Trading-Bot Prototyp',
         project1_desc: 'Prototyp für regelbasierte Orders und Marktdaten-Auswertung im Crypto-Umfeld.',
-        project1_li1: 'Ziel: Strategien strukturiert testen statt manuell ausfuehren.',
-        project1_li2: 'Tech: Python, Exchange-APIs, Datenanalyse.',
-        project1_li3: 'Mein Beitrag: Logik, API-Anbindung, Testing.',
+        project1_li1: 'Ziel: Strategien strukturiert testen statt manuell ausführen.',
+        project1_li2: 'Tech: Python, Exchange-APIs, Pandas für Datenanalyse.',
+        project1_li3: 'Mein Beitrag: Handelslogik, API-Anbindung, Backtesting.',
         project2_title: 'Telegram Notification Bot',
-        project2_desc: 'Bot für automatische Benachrichtigungen bei definierten Ereignissen.',
-        project2_li1: 'Ziel: Relevante Signale schneller erhalten und priorisieren.',
-        project2_li2: 'Tech: Python, Telegram API, einfache Datenlogik.',
-        project2_li3: 'Mein Beitrag: Architektur, Implementierung, Iterationen.',
+        project2_desc: 'Automatischer Benachrichtigungs-Bot für selbst definierte Ereignisse und Schwellenwerte.',
+        project2_li1: 'Ziel: Relevante Signale in Echtzeit erhalten, ohne manuelles Monitoring.',
+        project2_li2: 'Tech: Python, Telegram Bot API, Event-basierte Logik.',
+        project2_li3: 'Mein Beitrag: Architektur, Implementierung, laufende Iterationen.',
         project3_title: 'Consent & Privacy Web App',
-        project3_desc: 'Kleine Web-App zur Veranschaulichung von Browserdaten und Datenschutz.',
-        project3_li1: 'Ziel: Technische Themen verstaendlich und visuell erklaeren.',
-        project3_li2: 'Tech: Vanilla HTML/CSS/JavaScript.',
-        project3_li3: 'Mein Beitrag: UX-Idee, Frontend-Umsetzung, inhaltliche Struktur.',
+        project3_desc: 'Interaktive Web-App, die Browserdaten und Datenschutzkonzepte anschaulich erklärt.',
+        project3_li1: 'Ziel: Technische Datenschutzthemen verständlich und visuell aufbereiten.',
+        project3_li2: 'Tech: Vanilla HTML, CSS, JavaScript – keine Abhängigkeiten.',
+        project3_li3: 'Mein Beitrag: UX-Konzept, vollständige Frontend-Umsetzung.',
         project4_title: 'HR Funnel Analyse',
-        project4_desc: 'Analyse von Recruiting-Schritten zur Identifikation von Abbruchpunkten.',
-        project4_li1: 'Ziel: Prozessverbesserungen datenbasiert aufzeigen.',
-        project4_li2: 'Tech: SQL, strukturierte Auswertung, Reporting.',
-        project4_li3: 'Mein Beitrag: Datenaufbereitung, Analyse, Ergebnisdarstellung.',
+        project4_desc: 'SQL-basierte Analyse des Recruiting-Funnels zur Identifikation von Abbruchpunkten.',
+        project4_li1: 'Ziel: Datenbasierte Optimierungspotenziale im Bewerbungsprozess sichtbar machen.',
+        project4_li2: 'Tech: SQL, strukturierte Datenauswertung, Management-Reporting.',
+        project4_li3: 'Mein Beitrag: Datenmodellierung, Analyse, Ergebnispräsentation.',
         project_link: 'Auf GitHub ansehen ↗',
         projects_all: 'Alle Projekte auf GitHub ↗',
         workflow_title: 'Arbeitsweise',
         workflow_1_title: '1. Problem verstehen',
-        workflow_1_desc: 'Ich starte mit dem fachlichen Ziel: Welche Wirkung soll eine Loesung haben, für wen und mit welchen Rahmenbedingungen?',
+        workflow_1_desc: 'Ich starte mit dem fachlichen Ziel: Welche Wirkung soll eine Lösung haben, für wen und unter welchen Rahmenbedingungen?',
         workflow_2_title: '2. Pragmatisch bauen',
-        workflow_2_desc: 'Ich arbeite iterativ mit kleinen, testbaren Schritten statt mit grossen Big-Bang-Umsetzungen.',
+        workflow_2_desc: 'Ich arbeite iterativ mit kleinen, testbaren Schritten statt mit großen Big-Bang-Umsetzungen.',
         workflow_3_title: '3. AI sinnvoll einsetzen',
-        workflow_3_desc: 'AI-Tools nutze ich, um schneller Varianten zu prüfen und Codequalitaet zu verbessern, nicht als Ersatz für eigenes Verständnis.',
+        workflow_3_desc: 'AI-Tools nutze ich, um schneller Varianten zu prüfen und die Codequalität zu verbessern – nicht als Ersatz für eigenes Verständnis.',
         workflow_4_title: '4. Testen und dokumentieren',
-        workflow_4_desc: 'Ich prüfe Ergebnisse, verbessere Details und halte wichtige Entscheidungen nachvollziehbar fest.',
+        workflow_4_desc: 'Ich prüfe Ergebnisse konsequent, verfeinere Details und dokumentiere wichtige Entscheidungen nachvollziehbar.',
         contact_section_title: 'Kontakt',
         contact_title: 'Interesse an einem Austausch?',
-        contact_sub: 'Ich freue mich ueber Kontakt mit Recruitern, Hiring Managern oder Teams, die junge Talente mit Praxisfokus suchen.',
+        contact_sub: 'Ich freue mich über Kontakt mit Recruitern, Hiring Managern oder Teams, die junge Talente mit Praxisfokus suchen.',
         contact_github: 'GitHub ansehen ↗',
         contact_linkedin: 'LinkedIn öffnen ↗',
+        ci_email_label: 'E-Mail',
+        ci_location_label: 'Standort',
+        ci_avail_label: 'Verfügbar ab',
+        ci_avail_value: 'Sommer 2026',
+        ci_response: 'Ich antworte in der Regel innerhalb von 24–48 Stunden.',
+        form_name_ph: 'Name',
+        form_email_ph: 'E-Mail',
+        form_msg_ph: 'Nachricht',
+        form_subject_default: 'Betreff wählen (optional)',
+        form_subject_job: 'Jobmöglichkeit / Praktikum',
+        form_subject_collab: 'Zusammenarbeit / Projekt',
+        form_subject_question: 'Allgemeine Frage',
+        form_subject_other: 'Sonstiges',
+        form_send: 'Nachricht senden',
+        form_note: 'Formular via Formspree · eigene ID unter formspree.io eintragen',
+        form_success_title: 'Nachricht gesendet!',
+        form_success_text: 'Danke – ich melde mich in der Regel innerhalb von 24–48 Stunden.',
+        form_err_required: 'Pflichtfeld',
+        form_err_email: 'Bitte eine gültige E-Mail-Adresse eingeben',
+        form_err_short: 'Mindestens 10 Zeichen',
+        form_err_send: 'Fehler beim Senden – bitte direkt per E-Mail kontaktieren.',
+        toast_copied: 'E-Mail kopiert!',
         footer_copy: '© 2026 Daniel Luterbach · Zürich, Schweiz',
         footer_note: 'In Ausbildung als Entwickler digitales Business EFZ',
         footer_link: 'linkedin.com/in/daniel-luterbach-a1b34b308 ↗'
@@ -887,6 +1411,17 @@
         page_title: 'Daniel Luterbach | Apprentice Digital Business Developer EFZ',
         page_desc: 'Portfolio of Daniel Luterbach: Apprentice Digital Business Developer EFZ at Zürcher Kantonalbank focused on digital solutions, data, AI and automation.',
         og_locale: 'en_US',
+        about_highlights_title: 'At a Glance',
+        hl_status_label: 'Status',
+        hl_status_value: 'Apprenticeship year 3 / 3 · EFZ',
+        hl_company_label: 'Employer',
+        hl_stack_label: 'Core technologies',
+        hl_projects_label: 'Completed projects',
+        hl_avail_label: 'Availability',
+        hl_avail_value: 'From summer 2026',
+        skill_level_advanced: 'Advanced',
+        skill_level_good: 'Solid',
+        skill_level_basic: 'Basics',
         mobile_menu: 'Menu',
         nav_about: 'About',
         nav_skills: 'Skills',
@@ -939,25 +1474,25 @@
         interest_6: 'Automation',
         projects_title: 'Projects',
         project1_title: 'Trading Bot Prototype',
-        project1_desc: 'Prototype for rule-based orders and market data analysis in a crypto context.',
-        project1_li1: 'Goal: test strategies in a structured way instead of manual execution.',
-        project1_li2: 'Tech: Python, exchange APIs, data analysis.',
-        project1_li3: 'My role: logic, API integration, testing.',
+        project1_desc: 'Prototype for rule-based order execution and market data analysis in a crypto trading context.',
+        project1_li1: 'Goal: systematically backtest strategies instead of manual trial-and-error.',
+        project1_li2: 'Tech: Python, exchange APIs, Pandas for data analysis.',
+        project1_li3: 'My role: trading logic, API integration, backtesting setup.',
         project2_title: 'Telegram Notification Bot',
-        project2_desc: 'Bot for automated notifications based on defined events.',
-        project2_li1: 'Goal: receive and prioritize relevant signals faster.',
-        project2_li2: 'Tech: Python, Telegram API, lightweight data logic.',
-        project2_li3: 'My role: architecture, implementation, iteration.',
+        project2_desc: 'Automated notification bot that triggers alerts based on self-defined events and thresholds.',
+        project2_li1: 'Goal: receive relevant signals in real time without manual monitoring.',
+        project2_li2: 'Tech: Python, Telegram Bot API, event-driven logic.',
+        project2_li3: 'My role: architecture, full implementation, ongoing iterations.',
         project3_title: 'Consent & Privacy Web App',
-        project3_desc: 'Small web app that illustrates browser data and privacy topics.',
-        project3_li1: 'Goal: explain technical topics in a clear and visual way.',
-        project3_li2: 'Tech: vanilla HTML/CSS/JavaScript.',
-        project3_li3: 'My role: UX concept, frontend implementation, content structure.',
+        project3_desc: 'Interactive web app that visualizes browser data and explains privacy concepts hands-on.',
+        project3_li1: 'Goal: make technical privacy topics accessible and visually engaging.',
+        project3_li2: 'Tech: vanilla HTML, CSS, JavaScript — zero dependencies.',
+        project3_li3: 'My role: UX concept, complete frontend implementation.',
         project4_title: 'HR Funnel Analysis',
-        project4_desc: 'Analysis of recruiting funnel steps to identify drop-off points.',
-        project4_li1: 'Goal: highlight data-driven process improvements.',
-        project4_li2: 'Tech: SQL, structured analysis, reporting.',
-        project4_li3: 'My role: data prep, analysis, result communication.',
+        project4_desc: 'SQL-based analysis of the recruiting funnel to identify and quantify drop-off points.',
+        project4_li1: 'Goal: surface data-driven optimization potential in the hiring process.',
+        project4_li2: 'Tech: SQL, structured data analysis, management reporting.',
+        project4_li3: 'My role: data modelling, analysis, results presentation.',
         project_link: 'View on GitHub ↗',
         projects_all: 'See all projects on GitHub ↗',
         workflow_title: 'How I Work',
@@ -974,6 +1509,28 @@
         contact_sub: 'I am happy to connect with recruiters, hiring managers and teams looking for a junior profile with practical delivery focus.',
         contact_github: 'View GitHub ↗',
         contact_linkedin: 'Open LinkedIn ↗',
+        ci_email_label: 'Email',
+        ci_location_label: 'Location',
+        ci_avail_label: 'Available from',
+        ci_avail_value: 'Summer 2026',
+        ci_response: 'I usually respond within 24–48 hours.',
+        form_name_ph: 'Name',
+        form_email_ph: 'Email',
+        form_msg_ph: 'Message',
+        form_subject_default: 'Select a subject (optional)',
+        form_subject_job: 'Job opportunity / internship',
+        form_subject_collab: 'Collaboration / project',
+        form_subject_question: 'General question',
+        form_subject_other: 'Other',
+        form_send: 'Send message',
+        form_note: 'Form powered by Formspree · add your own ID at formspree.io',
+        form_success_title: 'Message sent!',
+        form_success_text: 'Thanks – I\'ll get back to you within 24–48 hours.',
+        form_err_required: 'Required field',
+        form_err_email: 'Please enter a valid email address',
+        form_err_short: 'At least 10 characters',
+        form_err_send: 'Sending failed – please contact me directly by email.',
+        toast_copied: 'Email copied!',
         footer_copy: '© 2026 Daniel Luterbach · Zurich, Switzerland',
         footer_note: 'Currently training as an Apprentice Digital Business Developer EFZ',
         footer_link: 'linkedin.com/in/daniel-luterbach-a1b34b308 ↗'
@@ -1063,6 +1620,165 @@
     } else {
       document.querySelectorAll('.reveal').forEach((el) => el.classList.add('visible'));
     }
+
+    // === SKILL BAR ANIMATION ===
+    const barObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.skill-bar-fill').forEach((bar) => bar.classList.add('animated'));
+          barObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('.skill-bar-list').forEach((el) => barObserver.observe(el));
+
+    // === TYPING ANIMATION ===
+    const typedEl = document.getElementById('typed-word');
+    if (typedEl && !prefersReduced) {
+      const wordsSets = {
+        de: ['Python-Entwickler', 'Datenanalyst', 'Automatisierer', 'AI-Enthusiast', 'Banking Tech'],
+        en: ['Python Developer', 'Data Analyst', 'Automation Builder', 'AI Enthusiast', 'Banking Tech']
+      };
+      let wi = 0, ci = 0, deleting = false;
+      const type = () => {
+        const lang = document.documentElement.lang || 'de';
+        const words = wordsSets[lang] || wordsSets.de;
+        const word = words[wi % words.length];
+        ci = deleting ? ci - 1 : ci + 1;
+        typedEl.textContent = word.slice(0, ci);
+        if (!deleting && ci === word.length) {
+          setTimeout(() => { deleting = true; setTimeout(type, 400); }, 1400);
+          return;
+        }
+        if (deleting && ci === 0) { deleting = false; wi++; }
+        setTimeout(type, deleting ? 55 : 95);
+      };
+      setTimeout(type, 1200);
+    }
+
+    // === SCROLL-TO-TOP ===
+    const scrollTopBtn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+      scrollTopBtn.classList.toggle('visible', window.scrollY > 500);
+    }, { passive: true });
+    scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // === TOAST ===
+    const showToast = (msg) => {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2200);
+    };
+
+    // === COPY EMAIL ===
+    document.getElementById('copyEmail')?.addEventListener('click', () => {
+      const btn = document.getElementById('copyEmail');
+      const email = btn.dataset.email;
+      const lang = document.documentElement.lang || 'de';
+      navigator.clipboard.writeText(email)
+        .then(() => showToast(i18n[lang]?.toast_copied || 'Copied!'))
+        .catch(() => showToast(email));
+    });
+
+    // === CONTACT FORM ===
+    const contactForm = document.getElementById('contactForm');
+    const formSuccess = document.getElementById('formSuccess');
+
+    if (contactForm) {
+      const t = (key) => i18n[document.documentElement.lang || 'de']?.[key] || '';
+
+      // Field validation helper
+      const validateField = (input, errId) => {
+        const val = input.value.trim();
+        let msg = '';
+        if (input.required && !val) {
+          msg = t('form_err_required');
+        } else if (input.type === 'email' && val && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+          msg = t('form_err_email');
+        } else if (input.id === 'f-msg' && val && val.length < 10) {
+          msg = t('form_err_short');
+        }
+        const errEl = document.getElementById(errId);
+        if (errEl) errEl.textContent = msg;
+        input.classList.toggle('input-error', !!msg);
+        return !msg;
+      };
+
+      // Validate all required fields, return true if all pass
+      const validateAll = () => {
+        const n = validateField(document.getElementById('f-name'), 'err-name');
+        const e = validateField(document.getElementById('f-email'), 'err-email');
+        const m = validateField(document.getElementById('f-msg'), 'err-msg');
+        return n && e && m;
+      };
+
+      // Blur-time validation
+      document.getElementById('f-name')?.addEventListener('blur', () => validateField(document.getElementById('f-name'), 'err-name'));
+      document.getElementById('f-email')?.addEventListener('blur', () => validateField(document.getElementById('f-email'), 'err-email'));
+      document.getElementById('f-msg')?.addEventListener('blur', () => validateField(document.getElementById('f-msg'), 'err-msg'));
+
+      // Re-validate on input to clear errors quickly
+      ['f-name', 'f-email', 'f-msg'].forEach((id) => {
+        document.getElementById(id)?.addEventListener('input', () => {
+          const el = document.getElementById(id);
+          if (el.classList.contains('input-error')) {
+            validateField(el, 'err-' + id.replace('f-', ''));
+          }
+        });
+      });
+
+      // Character counter
+      const msgEl = document.getElementById('f-msg');
+      const counter = document.getElementById('char-count');
+      if (msgEl && counter) {
+        const counterEl = counter.parentElement;
+        msgEl.addEventListener('input', () => {
+          const len = msgEl.value.length;
+          counter.textContent = len;
+          counterEl.classList.toggle('warn', len > 800 && len <= 1000);
+          counterEl.classList.toggle('over', len > 1000);
+        });
+      }
+
+      // Submit
+      const submitBtn = document.getElementById('submitBtn');
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!validateAll()) return;
+
+        submitBtn.classList.add('loading');
+        submitBtn.disabled = true;
+
+        try {
+          const res = await fetch(contactForm.action, {
+            method: 'POST',
+            body: new FormData(contactForm),
+            headers: { 'Accept': 'application/json' }
+          });
+          if (res.ok) {
+            contactForm.style.display = 'none';
+            if (formSuccess) formSuccess.classList.add('show');
+          } else {
+            showToast(t('form_err_send'));
+          }
+        } catch {
+          showToast(t('form_err_send'));
+        }
+
+        submitBtn.classList.remove('loading');
+        submitBtn.disabled = false;
+      });
+    }
+
+    // === GITHUB API ===
+    fetch('https://api.github.com/users/danizh910')
+      .then((r) => r.json())
+      .then((d) => {
+        const el = document.getElementById('gh-repos');
+        if (el && d.public_repos != null) el.textContent = d.public_repos + ' Public Repos';
+      })
+      .catch(() => {});
   </script>
 </body>
 </html>
